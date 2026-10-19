@@ -6,6 +6,47 @@ import { asyncHandler } from '../utils/async_handler.js';
 import { logClickAsync } from '../utils/click_logger.js';
 import { sendResponse } from '../utils/send_reponse.js';
 
+const renderPasswordPromptHtml = (shortCode) => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Protected Link</title>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;font-family:sans-serif;">
+  <div>
+    <h3>Enter Password</h3>
+    <form id="passForm">
+      <input type="password" id="pwd" placeholder="Enter password" required autofocus />
+      <button type="submit">Unlock</button>
+    </form>
+    <p id="errMsg" style="color:red;display:none;"></p>
+  </div>
+  <script>
+    document.getElementById('passForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = document.getElementById('errMsg');
+      err.style.display = 'none';
+      try {
+        const res = await fetch('/r/${shortCode}/verify-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: document.getElementById('pwd').value })
+        });
+        const data = await res.json();
+        if (res.ok && data.data?.destinationUrl) {
+          window.location.href = data.data.destinationUrl;
+        } else {
+          err.innerText = data.message || 'Incorrect password';
+          err.style.display = 'block';
+        }
+      } catch (e) {
+        err.innerText = 'An error occurred';
+        err.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>`;
 
 const evaluateLinkRules = (link) => {
   if (!link) {
@@ -52,6 +93,10 @@ const handleRedirect = asyncHandler(async (req, res) => {
       req.query?.pwd || req.query?.password || req.get('x-link-password');
 
     if (!providedPassword) {
+      if (req.accepts('html')) {
+        return res.status(401).send(renderPasswordPromptHtml(link.shortCode));
+      }
+      
       throw new ApiError({
         statusCode: 401,
         message: 'This link is password protected',

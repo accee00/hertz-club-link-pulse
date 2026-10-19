@@ -13,6 +13,7 @@ import {
   isReservedAlias,
 } from '../utils/code_generator.js';
 import { isDomainBlocked } from '../utils/domain_helper.js';
+import { aggregateClickAnalytics } from '../utils/analytics_helper.js';
 import { sendResponse } from '../utils/send_reponse.js';
 
 const serializeLink = (link, req) => {
@@ -501,9 +502,66 @@ const getLinkQrCode = asyncHandler(async (req, res) => {
   );
 });
 
+const getLinkAnalytics = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { period = '7d' } = req.query;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError({
+      statusCode: 400,
+      message: 'Invalid link ID',
+    });
+  }
+
+  const link = await Link.findById(id).populate({
+    path: 'workspace',
+    select: 'name owner',
+  });
+
+  if (!link) {
+    throw new ApiError({
+      statusCode: 404,
+      message: 'Link not found',
+    });
+  }
+
+  const isOwner = link.workspace?.owner?.equals(req.user._id);
+  const isAdmin = req.user.role === 'admin';
+  if (!isOwner && !isAdmin) {
+    throw new ApiError({
+      statusCode: 403,
+      message: 'Insufficient permissions for this link',
+    });
+  }
+
+  const analytics = await aggregateClickAnalytics({
+    linkIds: link._id,
+    period,
+  });
+
+  return sendResponse(
+    res,
+    new ApiResponse({
+      statusCode: 200,
+      message: 'Link analytics retrieved',
+      data: {
+        link: {
+          id: link.id,
+          shortCode: link.shortCode,
+          shortUrl: serializeLink(link, req).shortUrl,
+          destinationUrl: link.destinationUrl,
+          totalClicksLifetime: link.totalClicks,
+        },
+        ...analytics,
+      },
+    })
+  );
+});
+
 export {
   createLink,
   deleteLink,
+  getLinkAnalytics,
   getLinkById,
   getLinkQrCode,
   listLinks,

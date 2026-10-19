@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createCampaign,
   deleteCampaign,
+  getCampaignAnalytics,
   getCampaignById,
   listCampaigns,
   updateCampaign,
@@ -21,6 +22,8 @@ campaignRouter
   .route('/')
   .post(validateBody(createCampaignSchema), createCampaign)
   .get(listCampaigns);
+
+campaignRouter.route('/:id/analytics').get(getCampaignAnalytics);
 
 campaignRouter
   .route('/:id')

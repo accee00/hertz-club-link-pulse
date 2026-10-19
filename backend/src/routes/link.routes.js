@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createLink,
   deleteLink,
+  getLinkAnalytics,
   getLinkById,
   getLinkQrCode,
   listLinks,
@@ -24,6 +25,7 @@ linkRouter
   .get(listLinks);
 
 linkRouter.route('/:id/qr').get(getLinkQrCode);
+linkRouter.route('/:id/analytics').get(getLinkAnalytics);
 
 linkRouter
   .route('/:id')
