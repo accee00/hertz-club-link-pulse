@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../config/config.js';
 import { User } from '../models/user.model.js';
+import { Workspace } from '../models/workspace.model.js';
 import { ApiError } from '../utils/api_error.js';
 import { ApiResponse } from '../utils/api_reponse.js';
 
@@ -55,6 +56,12 @@ const register = async (req, res, next) => {
       email: normalizedEmail,
       passwordHash,
     });
+
+    const defaultWorkspace = await Workspace.create({
+      name: `${user.name}'s Workspace`,
+      owner: user._id,
+    });
+
     const token = createToken(user.id);
 
     return res.status(201).json(
@@ -67,6 +74,10 @@ const register = async (req, res, next) => {
             name: user.name,
             email: user.email,
             role: user.role,
+          },
+          workspace: {
+            id: defaultWorkspace.id,
+            name: defaultWorkspace.name,
           },
           token,
         },
