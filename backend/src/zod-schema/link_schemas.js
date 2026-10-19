@@ -49,3 +49,9 @@ export const updateLinkSchema = z.object({
     .optional()
     .nullable(),
 });
+
+export const verifyPasswordSchema = z.object({
+  password: z
+    .string({ error: 'Password is required' })
+    .min(1, { message: 'Password cannot be empty' }),
+});

@@ -41,11 +41,10 @@ const generateVisitorHash = (req) => {
   const clientIp =
     req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
     req.ip ||
-    req.socket?.remoteAddress ||
     '127.0.0.1';
 
   const userAgent = req.get('user-agent') || '';
-  const salt = config.JWT_SECRET || 'linkpulse-salt';
+  const salt = config.JWT_SECRET;
 
   return crypto
     .createHash('sha256')
@@ -64,10 +63,9 @@ const logClickAsync = async ({ link, req }) => {
     const browser = detectBrowser(userAgent);
     const visitorHash = generateVisitorHash(req);
 
-    const source =
-      req.query?.src === 'qr' || req.query?.source === 'qr' ? 'qr' : 'direct';
+    const source = req.query?.src === 'qr' ? 'qr' : 'direct';
 
-    const rawReferrer = req.get('referrer') || req.get('referer') || '';
+    const rawReferrer = req.get('referrer') || '';
     let referrer = 'direct';
     if (rawReferrer) {
       try {

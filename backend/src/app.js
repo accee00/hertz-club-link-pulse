@@ -4,6 +4,7 @@ import { adminRouter } from './routes/admin.routes.js';
 import { authRouter } from './routes/auth.routes.js';
 import { campaignRouter } from './routes/campaign.routes.js';
 import { linkRouter } from './routes/link.routes.js';
+import { redirectRouter } from './routes/redirect.routes.js';
 import { workspaceRouter } from './routes/workspace.routes.js';
 import { ApiError } from './utils/api_error.js';
 import { sendError, sendResponse } from './utils/send_reponse.js';
@@ -18,6 +19,7 @@ app.route('/health').get((req, res) => {
   res.send("Yoo!! What's uppp.");
 });
 
+app.use('/r', redirectRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/workspaces', workspaceRouter);
