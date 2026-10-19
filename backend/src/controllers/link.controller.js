@@ -15,15 +15,17 @@ import {
 import { isDomainBlocked } from '../utils/domain_helper.js';
 import { aggregateClickAnalytics } from '../utils/analytics_helper.js';
 import { sendResponse } from '../utils/send_reponse.js';
+import config from '../config/config.js';
 
 const serializeLink = (link, req) => {
   const host = req?.get('host') || 'localhost:3000';
   const protocol = req?.protocol || 'http';
+  const baseUrl = config.BASE_URL || `${protocol}://${host}`;
 
   return {
     id: link.id,
     shortCode: link.shortCode,
-    shortUrl: `${protocol}://${host}/r/${link.shortCode}`,
+    shortUrl: `${baseUrl}/r/${link.shortCode}`,
     destinationUrl: link.destinationUrl,
     workspace: link.workspace
       ? {
@@ -470,7 +472,8 @@ const getLinkQrCode = asyncHandler(async (req, res) => {
 
   const host = req.get('host') || 'localhost:3000';
   const protocol = req.protocol || 'http';
-  const qrTargetUrl = `${protocol}://${host}/r/${link.shortCode}?src=qr`;
+  const baseUrl = config.BASE_URL || `${protocol}://${host}`;
+  const qrTargetUrl = `${baseUrl}/r/${link.shortCode}?src=qr`;
 
   if (download === 'true' || format === 'png') {
     res.setHeader('Content-Type', 'image/png');

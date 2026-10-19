@@ -11,7 +11,12 @@ import { sendError, sendResponse } from './utils/send_reponse.js';
 
 const app = express();
 
-app.use(cors());
+app.set('trust proxy', 1);
+
+app.use(cors({
+ origin: '*'
+}));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: '16kb' }));
 
