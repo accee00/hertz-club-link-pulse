@@ -33,7 +33,7 @@ const register = asyncHandler(async (req, res) => {
     passwordHash,
   });
 
-  const defaultWorkspace = await Workspace.create({
+  await Workspace.create({
     name: `${user.name}'s Workspace`,
     owner: user._id,
   });
@@ -51,10 +51,6 @@ const register = asyncHandler(async (req, res) => {
           name: user.name,
           email: user.email,
           role: user.role,
-        },
-        workspace: {
-          id: defaultWorkspace.id,
-          name: defaultWorkspace.name,
         },
         token,
       },
