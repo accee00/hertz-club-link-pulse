@@ -6,8 +6,8 @@ const port = config.PORT;
 
 try {
   await connectDB();
-  app.listen(port, () => {
-    console.log(`Server running at ${port}`);
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running at http://localhost:${port}`);
   });
 } catch (error) {
   console.error('Failed to start server:', error.message);

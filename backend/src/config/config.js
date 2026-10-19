@@ -16,6 +16,7 @@ const config = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1d',
   PORT: Number(process.env.PORT) || 3000,
+  BASE_URL: process.env.BASE_URL ? process.env.BASE_URL.replace(/\/+$/, '') : null,
 };
 
 export { config };
