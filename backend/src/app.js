@@ -5,11 +5,18 @@ import { authRouter } from './routes/auth.routes.js';
 import { campaignRouter } from './routes/campaign.routes.js';
 import { workspaceRouter } from './routes/workspace.routes.js';
 import { ApiError } from './utils/api_error.js';
+import { sendError, sendResponse } from './utils/send_reponse.js';
 
 const app = express();
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: '16kb' }));
+
+app.route('/health').get((req, res) => {
+  res.send("Yoo!! What's uppp.");
+});
+
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/workspaces', workspaceRouter);
@@ -24,17 +31,24 @@ app.use((error, req, res, next) => {
     return next(error);
   }
 
+  if (error instanceof ApiError) {
+    return sendResponse(res, error);
+  }
+
   const statusCode = error.statusCode || (error.code === 11000 ? 409 : 500);
   const message =
     error.code === 11000
       ? 'An account with this email already exists'
-      : error.message;
+      : error.message || 'Internal Server Error';
 
-  res.status(statusCode).json({
-    success: false,
-    message: statusCode === 500 ? 'Internal server error' : message,
-    errors: error.errors || [],
-  });
+  return sendError(
+    res,
+    new ApiError({
+      statusCode,
+      message,
+      errors: error.errors || [],
+    })
+  );
 });
 
 export { app };
