@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  listAllCampaigns,
   listAllWorkspaces,
   listUsers,
 } from '../controllers/admin.controller.js';
@@ -13,6 +14,12 @@ adminRouter.get(
   authenticate,
   authorizeRoles('admin'),
   listAllWorkspaces
+);
+adminRouter.get(
+  '/campaigns',
+  authenticate,
+  authorizeRoles('admin'),
+  listAllCampaigns
 );
 
 export { adminRouter };
