@@ -4,7 +4,6 @@ import {
   BarChart3,
   Link2,
   QrCode,
-  ShieldCheck,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -32,17 +31,7 @@ const features = [
 function LandingPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-paper text-ink">
-      <header className="mx-auto flex w-[min(100%_-_40px,_1180px)] items-center justify-between py-5 sm:w-[min(100%_-_64px,_1180px)] sm:py-7">
-        <Link
-          aria-label="Link Pulse home"
-          className="inline-flex items-center gap-2.5 font-display text-sm font-extrabold tracking-[1.2px] text-pulse-green no-underline"
-          to="/"
-        >
-          <span className="grid size-9 place-items-center rounded-xl bg-pulse-green text-pulse-lime">
-            <Activity size={20} />
-          </span>
-          LINK PULSE
-        </Link>
+      <header className="mx-auto flex w-[min(100%_-_40px,_1180px)] justify-end py-5 sm:w-[min(100%_-_64px,_1180px)] sm:py-7">
         <nav aria-label="Account" className="flex items-center gap-3 sm:gap-5">
           <Link
             className="rounded px-2 py-2 text-xs font-bold text-[#526159] no-underline transition-colors hover:text-pulse-green sm:text-sm"
@@ -61,9 +50,6 @@ function LandingPage() {
 
       <section className="relative mx-auto grid w-[min(100%_-_40px,_1180px)] items-center gap-10 pb-16 pt-9 sm:w-[min(100%_-_64px,_1180px)] sm:gap-12 sm:pb-24 sm:pt-16 lg:grid-cols-[1.05fr_.95fr] lg:gap-16">
         <div className="relative z-10 max-w-[610px] animate-[rise-in_.65s_ease-out_both]">
-          <p className="mb-4 text-[10px] font-extrabold tracking-[2px] text-pulse-green sm:text-xs">
-            SHORTER LINKS. CLEARER SIGNAL.
-          </p>
           <h1 className="m-0 font-display text-[clamp(42px,8vw,76px)] font-semibold leading-[1.03] tracking-[-2.8px] text-[#23352d]">
             Make every link{" "}
             <span className="text-pulse-green">go further.</span>
@@ -86,14 +72,6 @@ function LandingPage() {
               I already have an account
             </Link>
           </div>
-          <div className="mt-8 flex items-center gap-2 text-xs text-[#758078]">
-            <ShieldCheck
-              aria-hidden="true"
-              className="text-pulse-green"
-              size={16}
-            />
-            Simple tools to keep your links organized.
-          </div>
         </div>
 
         <div
@@ -105,7 +83,7 @@ function LandingPage() {
           <div className="relative rounded-2xl border border-[#e5e9e2] bg-white p-4 shadow-[0_24px_70px_rgba(36,58,46,.12)] sm:rounded-[22px] sm:p-6">
             <div className="flex items-center justify-between border-b border-[#edf0eb] pb-4">
               <div className="flex items-center gap-2.5">
-                <span className="grid size-8 place-items-center rounded-lg bg-[#edf3e7] text-pulse-green">
+                <span className="grid size-8 place-items-center bg-[#f0efea] text-pulse-green">
                   <Activity size={17} />
                 </span>
                 <div>
@@ -117,7 +95,7 @@ function LandingPage() {
                   </p>
                 </div>
               </div>
-              <span className="rounded-full bg-[#eff5e9] px-2.5 py-1 text-[9px] font-bold text-pulse-green">
+              <span className="bg-[#f0efea] px-2.5 py-1 text-[9px] font-bold text-pulse-green">
                 LAST 7 DAYS
               </span>
             </div>
@@ -197,9 +175,6 @@ function LandingPage() {
       <section className="border-y border-[#e6eae4] bg-white/65">
         <div className="mx-auto w-[min(100%_-_40px,_1180px)] py-14 sm:w-[min(100%_-_64px,_1180px)] sm:py-20">
           <div className="max-w-[540px]">
-            <p className="mb-3 text-[10px] font-extrabold tracking-[1.8px] text-pulse-green">
-              EVERYTHING IN ONE PLACE
-            </p>
             <h2 className="m-0 font-display text-3xl font-semibold tracking-[-.8px] text-[#27362f] sm:text-4xl">
               Less link admin. More momentum.
             </h2>
@@ -210,7 +185,7 @@ function LandingPage() {
                 className="rounded-xl border border-[#e7ebe4] bg-white p-5 sm:p-6"
                 key={title}
               >
-                <span className="grid size-10 place-items-center rounded-xl bg-[#edf3e7] text-pulse-green">
+                <span className="grid size-10 place-items-center bg-[#f0efea] text-pulse-green">
                   <Icon size={20} />
                 </span>
                 <h3 className="mb-0 mt-4 font-display text-base font-bold text-[#34433b]">
@@ -225,10 +200,6 @@ function LandingPage() {
         </div>
       </section>
 
-      <footer className="mx-auto flex w-[min(100%_-_40px,_1180px)] flex-col gap-3 py-6 text-xs text-[#89948d] sm:w-[min(100%_-_64px,_1180px)] sm:flex-row sm:items-center sm:justify-between">
-        <span>© {new Date().getFullYear()} Link Pulse</span>
-        <span>Shorter links. Clearer signal.</span>
-      </footer>
     </main>
   );
 }

@@ -115,7 +115,7 @@ function LinksPanel({ onCreateLink }) {
               aria-pressed={filter === status}
               className={`[min-height:32px] [padding:0_11px] [border:0] [border-radius:4px] [background:transparent] [color:#839087] [cursor:pointer] [text-transform:capitalize] [font-size:10px] [font-weight:600] ${
                 filter === status
-                  ? "[background:#eaf0e4] [color:var(--pulse-green)]"
+                  ? "[background:#f0efea] [color:var(--pulse-green)]"
                   : ""
               }`}
               key={status}
@@ -173,13 +173,13 @@ function LinksPanel({ onCreateLink }) {
                 <span
                   className={`[display:inline-flex] [width:fit-content] [align-items:center] [gap:6px] [padding:5px_8px] [border-radius:12px] [background:#f1f3ef] [color:#818a84] [text-transform:capitalize] [font-size:9px] [font-weight:700] ${
                     link.status === "active"
-                      ? "[background:#eff5e9] [color:#507648]"
+                      ? "[background:#c8e6c9] [color:#2e7d32]"
                       : ""
                   }`}
                 >
                   <span
                     className={`[width:5px] [height:5px] [border-radius:50%] [background:#9aa39c] ${
-                      link.status === "active" ? "[background:#67a457]" : ""
+                      link.status === "active" ? "[background:#8ca870]" : ""
                     }`}
                   />
                   {link.status}
@@ -226,7 +226,7 @@ function LinksPanel({ onCreateLink }) {
           </div>
         ) : (
           <div className="[display:grid] [min-height:190px] [align-content:center] [justify-items:center] [gap:8px] [padding:22px] [color:#99a39c] [text-align:center] [font-size:11px]">
-            <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [border-radius:50%] [background:#eff4e9] [color:var(--pulse-green)]">
+            <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [background:#f0efea] [color:var(--pulse-green)]">
               <ArrowUpRight size={21} />
             </span>
             <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">

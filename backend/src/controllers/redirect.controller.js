@@ -26,7 +26,7 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f4f5f1" />
+    <meta name="theme-color" content="#f5f5f5" />
     <title>Link unavailable | Link Pulse</title>
     <style>
       * { box-sizing: border-box; }
@@ -36,21 +36,20 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
         margin: 0;
         padding: 24px;
         place-items: center;
-        background: #f4f5f1;
-        color: #27362f;
+        background: #f5f5f5;
+        color: #131212;
         font-family: "DM Sans", Arial, sans-serif;
       }
       main {
         width: min(100%, 460px);
         padding: 36px;
-        border: 1px solid #e5e9e3;
-        border-radius: 12px;
+        border: 1px solid #e5e5e5;
         background: #fff;
-        box-shadow: 0 18px 55px rgba(31, 50, 40, .08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
         text-align: center;
       }
       .brand {
-        color: #245e4e;
+        color: #a8a151;
         font-size: 12px;
         font-weight: 800;
         letter-spacing: 1.4px;
@@ -61,9 +60,8 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
         height: 54px;
         margin: 28px auto 18px;
         place-items: center;
-        border-radius: 50%;
-        background: #fff1e9;
-        color: #a24d32;
+        background: #f0efea;
+        color: #8b4a47;
         font-size: 25px;
       }
       h1 {
@@ -73,7 +71,7 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
       }
       p {
         margin: 12px 0 24px;
-        color: #748078;
+        color: #737373;
         font-size: 14px;
         line-height: 1.6;
       }
@@ -83,15 +81,14 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
         margin-top: 8px;
         padding: 0 17px;
         place-items: center;
-        border: 1px solid #dfe7df;
-        border-radius: 6px;
+        border: 1px solid #e5e5e5;
         background: #fff;
-        color: #245e4e;
+        color: #131212;
         font-size: 13px;
         font-weight: 700;
         text-decoration: none;
       }
-      .home-link:hover { background: #f5f8f3; }
+      .home-link:hover { background: #f5f5f5; }
     </style>
   </head>
   <body>
@@ -121,7 +118,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f4f5f1" />
+    <meta name="theme-color" content="#f5f5f5" />
     <title>Password protected link | Link Pulse</title>
     <style>
       * { box-sizing: border-box; }
@@ -131,20 +128,19 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         margin: 0;
         padding: 24px;
         place-items: center;
-        background: #f4f5f1;
-        color: #27362f;
+        background: #f5f5f5;
+        color: #131212;
         font-family: "DM Sans", Arial, sans-serif;
       }
       main {
         width: min(100%, 440px);
         padding: 36px;
-        border: 1px solid #e5e9e3;
-        border-radius: 12px;
+        border: 1px solid #e5e5e5;
         background: #fff;
-        box-shadow: 0 18px 55px rgba(31, 50, 40, .08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
       }
       .brand {
-        color: #245e4e;
+        color: #a8a151;
         font-size: 12px;
         font-weight: 800;
         letter-spacing: 1.4px;
@@ -156,9 +152,8 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         height: 52px;
         margin: 27px auto 18px;
         place-items: center;
-        border-radius: 50%;
-        background: #eef4e9;
-        color: #245e4e;
+        background: #f0efea;
+        color: #a8a151;
         font-size: 22px;
       }
       h1 {
@@ -169,7 +164,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
       }
       .description {
         margin: 10px 0 24px;
-        color: #748078;
+        color: #737373;
         font-size: 13px;
         line-height: 1.6;
         text-align: center;
@@ -177,7 +172,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
       label {
         display: block;
         margin-bottom: 8px;
-        color: #435148;
+        color: #3c3c3e;
         font-size: 12px;
         font-weight: 700;
       }
@@ -185,39 +180,36 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         width: 100%;
         height: 46px;
         padding: 0 12px;
-        border: 1px solid #dfe6de;
-        border-radius: 6px;
+        border: 1px solid #e5e5e5;
         background: #fff;
-        color: #27362f;
+        color: #131212;
         font: inherit;
         font-size: 14px;
       }
       input:focus {
-        border-color: #5b8a71;
-        outline: 3px solid rgba(36, 94, 78, .12);
+        border-color: #a8a151;
+        outline: 2px solid rgba(168, 161, 81, .12);
       }
       button {
         width: 100%;
         min-height: 44px;
         margin-top: 14px;
         border: 0;
-        border-radius: 6px;
-        background: #245e4e;
+        background: #111111;
         color: #fff;
         cursor: pointer;
         font: inherit;
         font-size: 13px;
         font-weight: 700;
       }
-      button:hover:not(:disabled) { background: #183f35; }
+      button:hover:not(:disabled) { background: #3a3a3a; }
       button:disabled { cursor: wait; opacity: .7; }
       .error {
         margin: 12px 0 0;
         padding: 10px 12px;
-        border: 1px solid #f0d3ca;
-        border-radius: 5px;
-        background: #fff4f0;
-        color: #8b4033;
+        border: 1px solid #e5e5e5;
+        background: #f5f5f5;
+        color: #8b4a47;
         font-size: 12px;
         line-height: 1.5;
       }

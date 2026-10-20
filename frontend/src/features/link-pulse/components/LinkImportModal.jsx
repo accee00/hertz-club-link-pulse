@@ -69,9 +69,9 @@ function LinkImportModal({ onClose, onImport }) {
         <div className="[display:grid] [gap:6px] [margin:20px_0_12px] [padding:12px] [border:1px_solid_#e8ede5] [border-radius:5px] [background:#f9fbf7] [color:#7d8980] [font-size:10px] [line-height:1.55]">
           <strong className="[color:#48574e] [font-size:10px]">CSV columns</strong>
           <span>
-            Required: <code className="[color:#376b50] [font-size:9px]">destinationUrl</code>. Optional:{" "}
-            <code className="[color:#376b50] [font-size:9px]">customAlias</code>, <code className="[color:#376b50] [font-size:9px]">tags</code> (use | between tags),{" "}
-            <code className="[color:#376b50] [font-size:9px]">campaign</code> (existing campaign name).
+            Required: <code className="[color:#a8a151] [font-size:9px]">destinationUrl</code>. Optional:{" "}
+            <code className="[color:#a8a151] [font-size:9px]">customAlias</code>, <code className="[color:#a8a151] [font-size:9px]">tags</code> (use | between tags),{" "}
+            <code className="[color:#a8a151] [font-size:9px]">campaign</code> (existing campaign name).
           </span>
         </div>
         <label className="[position:relative] [display:flex] [min-height:47px] [align-items:center] [gap:10px] [overflow:hidden] [padding:0_13px] [border:1px_dashed_#bacbb7] [border-radius:5px] [background:#fbfcfa] [color:#55705d] [cursor:pointer] [font-size:11px] [font-weight:700] [&:hover]:[border-color:var(--pulse-green)] [&:hover]:[background:#f6f9f3]">

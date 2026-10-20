@@ -38,7 +38,7 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
   };
 
   return (
-    <div className="[display:flex] [min-height:100vh] [background:#f7f8f5] [--pulse-green:#245e4e] [--pulse-green-dark:#183f35] [--pulse-lime:#d5f274]">
+    <div className="[display:flex] [min-height:100vh] [background:#f5f5f5] [--pulse-green:#111111] [--pulse-green-dark:#3a3a3a] [--pulse-lime:#a8a151]">
       <aside className="[position:fixed] [z-index:5] [inset:0_auto_0_0] [display:flex] [width:248px] [flex-direction:column] [padding:26px_17px_16px] [border-right:1px_solid_#e8ebe5] [background:#fff] max-[850px]:[width:205px] max-[850px]:[padding-right:12px] max-[850px]:[padding-left:12px] max-[600px]:[display:none]">
         <a
           className="[display:flex] [align-items:center] [gap:11px] [padding:2px_9px_29px] [color:#23332d] [font-size:14px] [font-weight:800] [letter-spacing:1.1px] [text-decoration:none] [font-family:'Manrope',_sans-serif]"
@@ -94,7 +94,7 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
               aria-current={activeSection === id ? "page" : undefined}
               className={`[display:flex] [min-height:43px] [align-items:center] [gap:12px] [padding:0_12px] [border:0] [border-radius:5px] [background:transparent] [color:#69756f] [cursor:pointer] [text-align:left] [font-size:13px] [font-weight:600] [transition:color_.16s,_background_.16s] [&:hover]:[background:#f5f7f3] [&:hover]:[color:var(--pulse-green)] ${
                 activeSection === id
-                  ? "[background:#edf3e7] [color:var(--pulse-green-dark)] [&>svg]:[color:var(--pulse-green)] [&:hover]:[background:#edf3e7] [&:hover]:[color:var(--pulse-green-dark)] [&:hover>svg]:[color:var(--pulse-green)]"
+                  ? "[background:#f0efea] [color:var(--pulse-green-dark)] [&>svg]:[color:#a8a151] [&:hover]:[background:#f0efea] [&:hover]:[color:var(--pulse-green-dark)] [&:hover>svg]:[color:#a8a151]"
                   : ""
               }`}
               key={id}
@@ -163,7 +163,7 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
               aria-current={activeSection === id ? "page" : undefined}
               className={`[display:inline-flex] [min-height:34px] [align-items:center] [gap:6px] [padding:0_10px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [color:#69756f] [white-space:nowrap] [font-size:10px] ${
                 activeSection === id
-                  ? "[border-color:#cbd9c8] [background:#edf3e7] [color:var(--pulse-green-dark)]"
+                  ? "[border-color:#e5e5e5] [background:#f0efea] [color:var(--pulse-green-dark)]"
                   : ""
               }`}
               key={id}

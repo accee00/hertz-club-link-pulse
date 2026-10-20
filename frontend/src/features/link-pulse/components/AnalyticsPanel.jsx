@@ -121,7 +121,7 @@ function AnalyticsPanel() {
         <p className="[display:grid] [min-height:190px] [align-content:center] [justify-items:center] [gap:8px] [padding:22px] [color:#99a39c] [text-align:center] [font-size:11px]">Gathering your analytics…</p>
       ) : !selected ? (
         <div className="[display:grid] [min-height:190px] [align-content:center] [justify-items:center] [gap:8px] [padding:22px] [color:#99a39c] [text-align:center] [font-size:11px] [min-height:260px] [border:1px_dashed_#e0e7de] [border-radius:6px] [background:#fff]">
-          <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [border-radius:50%] [background:#eff4e9] [color:var(--pulse-green)]">
+          <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [background:#f0efea] [color:var(--pulse-green)]">
             <BarChart3 size={20} />
           </span>
           <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">Your analytics will show up here.</strong>

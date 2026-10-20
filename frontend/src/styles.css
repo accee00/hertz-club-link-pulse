@@ -1,42 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-pulse-green: #245e4e;
-  --color-pulse-green-dark: #183f35;
-  --color-pulse-lime: #d5f274;
-  --color-admin-accent: #9a7448;
-  --color-admin-dark: #60482f;
-  --color-paper: #f4f5f1;
-  --color-ink: #1c2725;
-  --color-muted: #6d7773;
+  --color-pulse-green: #111111;
+  --color-pulse-green-dark: #3a3a3a;
+  --color-pulse-lime: #a8a151;
+  --color-admin-accent: #a8a151;
+  --color-admin-dark: #111111;
+  --color-paper: #f5f5f5;
+  --color-ink: #131212;
+  --color-muted: #737373;
   --font-display: "Manrope", sans-serif;
   --font-sans: "DM Sans", sans-serif;
 }
 
 :root {
   font-family: "DM Sans", sans-serif;
-  color: #1c2725;
-  background: #f4f5f1;
+  color: #131212;
+  background: #f5f5f5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --ink: #1c2725;
-  --muted: #6d7773;
-  --green: #235b4e;
-  --green-dark: #183e36;
-  --lime: #c9ec5c;
-  --paper: #f4f5f1;
-  --line: #e2e6e1;
-  --red: #a84132;
-  --pulse-green: #245e4e;
-  --pulse-green-dark: #183f35;
-  --pulse-lime: #d5f274;
-  --admin-accent: #9a7448;
-  --admin-dark: #60482f;
+  --ink: #131212;
+  --muted: #737373;
+  --green: #111111;
+  --green-dark: #3a3a3a;
+  --lime: #a8a151;
+  --paper: #f5f5f5;
+  --line: #e5e5e5;
+  --red: #8b4a47;
+  --pulse-green: #111111;
+  --pulse-green-dark: #3a3a3a;
+  --pulse-lime: #a8a151;
+  --admin-accent: #a8a151;
+  --admin-dark: #111111;
 }
 
 * {
   box-sizing: border-box;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 body {
@@ -57,7 +59,7 @@ a {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-  outline: 3px solid #91b83d;
+  outline: 2px solid #a8a151;
   outline-offset: 3px;
 }
 

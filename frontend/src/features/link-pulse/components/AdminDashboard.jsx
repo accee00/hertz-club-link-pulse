@@ -121,10 +121,10 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="[display:flex] [min-height:100vh] [background:#f7f8f5] [--admin-accent:#9a7448] [--admin-dark:#60482f]">
+    <div className="[display:flex] [min-height:100vh] [background:#f5f5f5] [--admin-accent:#a8a151] [--admin-dark:#111111]">
       <aside className="[position:fixed] [z-index:5] [inset:0_auto_0_0] [display:flex] [width:248px] [flex-direction:column] [padding:26px_17px_16px] [border-right:1px_solid_#e8ebe5] [background:#fff] max-[850px]:[width:205px] max-[850px]:[padding-right:12px] max-[850px]:[padding-left:12px] max-[600px]:[display:none]">
         <a className="[display:flex] [align-items:center] [gap:11px] [padding:2px_9px_29px] [color:#23332d] [font-size:14px] [font-weight:800] [letter-spacing:1.1px] [text-decoration:none] [font-family:'Manrope',_sans-serif] [padding-bottom:20px]" href="/dashboard">
-          <span className="[color:var(--pulse-green)] [display:grid] [width:36px] [height:36px] [place-items:center] [border-radius:11px] [background:var(--pulse-green)] [color:var(--pulse-lime)] [background:#685039] [color:#f0d6a4]">
+          <span className="[color:var(--pulse-green)] [display:grid] [width:36px] [height:36px] [place-items:center] [background:#111111] [color:#a8a151]">
             <Activity size={20} />
           </span>
           <span className="[color:var(--pulse-green)]">
@@ -141,7 +141,7 @@ function AdminDashboard() {
               aria-current={section === id ? "page" : undefined}
               className={`[display:flex] [min-height:43px] [align-items:center] [gap:12px] [padding:0_12px] [border:0] [border-radius:5px] [background:transparent] [color:#69756f] [cursor:pointer] [text-align:left] [font-size:13px] [font-weight:600] [transition:color_.16s,_background_.16s] [&:hover]:[background:#f5f7f3] [&:hover]:[color:var(--pulse-green)] ${
                 section === id
-                  ? "[background:#f5f0e8] [color:#644e35] [&>svg]:[color:#987247] [&:hover]:[background:#f5f0e8] [&:hover]:[color:#644e35] [&:hover>svg]:[color:#987247]"
+                  ? "[background:#f0efea] [color:#4a4a48] [&>svg]:[color:#a8a151] [&:hover]:[background:#f0efea] [&:hover]:[color:#4a4a48] [&:hover>svg]:[color:#a8a151]"
                   : ""
               }`}
               key={id}
@@ -169,7 +169,7 @@ function AdminDashboard() {
             </p>
           </div>
           <div className="[display:flex] [align-items:center] [gap:9px] [margin-top:15px] [padding:14px_1px_0] [border-top:1px_solid_#eff1ed]">
-            <span className="[display:grid] [width:34px] [height:34px] [flex:0_0_34px] [place-items:center] [border-radius:50%] [background:#e7eee0] [color:var(--pulse-green)] [font-size:13px] [font-weight:800] [background:#f0e8dc] [color:#80603a]">
+            <span className="[display:grid] [width:34px] [height:34px] [flex:0_0_34px] [place-items:center] [background:#f0efea] [color:#a8a151] [font-size:13px] [font-weight:800]">
               {user.name.slice(0, 1).toUpperCase()}
             </span>
             <span className="[display:grid] [min-width:0] [gap:3px] [flex:1]">
@@ -211,7 +211,7 @@ function AdminDashboard() {
               aria-current={section === id ? "page" : undefined}
               className={`[display:inline-flex] [min-height:34px] [align-items:center] [gap:6px] [padding:0_10px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [color:#69756f] [white-space:nowrap] [font-size:10px] ${
                 section === id
-                  ? "[border-color:#e5d8c3] [background:#f5f0e8] [color:#644e35]"
+                  ? "[border-color:#e5e5e5] [background:#f0efea] [color:#4a4a48]"
                   : ""
               }`}
               key={id}
@@ -247,7 +247,7 @@ function AdminDashboard() {
                   <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px]">Monitor Link Pulse activity, accounts, and link safety.</p>
                 </div>
                 <span className="[color:#95a099] [font-size:9px] [font-weight:800] [letter-spacing:1px] [display:inline-flex] [align-items:center] [gap:7px] [color:#75827a] max-[600px]:[font-size:8px]">
-                  <i className="[width:6px] [height:6px] [border-radius:50%] [background:#6bac64] [box-shadow:0_0_0_3px_#e9f2e5]" /> LIVE PLATFORM DATA
+                  <i className="[width:6px] [height:6px] [background:#8ca870]" /> LIVE PLATFORM DATA
                 </span>
               </div>
               <div className="[display:grid] [grid-template-columns:repeat(4,minmax(0,1fr))] [gap:11px] [margin-bottom:18px] max-[1100px]:[grid-template-columns:repeat(2,minmax(0,1fr))] max-[600px]:[gap:8px]">
@@ -305,7 +305,7 @@ function AdminDashboard() {
                       {recentLinks.map((link) => (
                         <tr key={link.id}>
                           <td className="[max-width:260px] [padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#6e7971] [white-space:nowrap] [border-bottom:0]">
-                            <span className="[color:#416d52] [font-weight:700]">
+                            <span className="[color:#111111] [font-weight:700]">
                               /{link.shortCode}
                             </span>
                           </td>
@@ -394,7 +394,7 @@ function AdminDashboard() {
                       {links.map((link) => (
                         <tr key={link.id}>
                           <td className="[max-width:260px] [padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#6e7971] [white-space:nowrap] [border-bottom:0]">
-                            <span className="[color:#416d52] [font-weight:700]">
+                            <span className="[color:#111111] [font-weight:700]">
                               /{link.shortCode}
                             </span>
                             {link.campaign?.name && (
@@ -420,14 +420,14 @@ function AdminDashboard() {
                             <span
                               className={`[display:inline-flex] [width:fit-content] [align-items:center] [gap:6px] [padding:5px_8px] [border-radius:12px] [background:#f1f3ef] [color:#818a84] [text-transform:capitalize] [font-size:9px] [font-weight:700] ${
                                 link.status === "active"
-                                  ? "[background:#eff5e9] [color:#507648]"
+                                  ? "[background:#c8e6c9] [color:#2e7d32]"
                                   : ""
                               }`}
                             >
                               <span
                                 className={`[width:5px] [height:5px] [border-radius:50%] [background:#9aa39c] ${
                                   link.status === "active"
-                                    ? "[background:#67a457]"
+                                    ? "[background:#8ca870]"
                                     : ""
                                 }`}
                               />
@@ -553,7 +553,7 @@ function AdminDashboard() {
                   </select>
                 </label>
                 <button
-                  className="[display:inline-flex] [min-height:36px] [align-items:center] [justify-content:center] [gap:6px] [padding:0_12px] [border:0] [border-radius:4px] [background:#60482f] [color:#fff] [cursor:pointer] [font-size:10px] [font-weight:700] [&:disabled]:[opacity:.65]"
+                  className="[display:inline-flex] [min-height:36px] [align-items:center] [justify-content:center] [gap:6px] [padding:0_12px] [border:0] [background:#111111] [color:#fff] [cursor:pointer] [font-size:10px] [font-weight:700] [&:disabled]:[opacity:.65]"
                   disabled={workspaceSubmitting || !users.length}
                   type="submit"
                 >
@@ -627,7 +627,7 @@ function AdminDashboard() {
                   />
                 </label>
                 <button
-                  className="[display:inline-flex] [min-height:40px] [align-items:center] [justify-content:center] [gap:8px] [padding:0_15px] [border:1px_solid_var(--pulse-green)] [border-radius:5px] [background:var(--pulse-green)] [color:#fff] [cursor:pointer] [text-decoration:none] [font-size:12px] [font-weight:700] [transition:transform_.16s,_background_.16s] [&:hover:not(:disabled)]:[transform:translateY(-1px)] [&:hover:not(:disabled)]:[background:var(--pulse-green-dark)] [&:disabled]:[opacity:.65] [&:disabled]:[cursor:wait] [min-height:39px] [background:#795e3d] [border-color:#795e3d] max-[600px]:[align-self:end]"
+                  className="[display:inline-flex] [min-height:40px] [align-items:center] [justify-content:center] [gap:8px] [padding:0_15px] [border:1px_solid_var(--pulse-green)] [border-radius:5px] [background:var(--pulse-green)] [color:#fff] [cursor:pointer] [text-decoration:none] [font-size:12px] [font-weight:700] [transition:transform_.16s,_background_.16s] [&:hover:not(:disabled)]:[transform:translateY(-1px)] [&:hover:not(:disabled)]:[background:var(--pulse-green-dark)] [&:disabled]:[opacity:.65] [&:disabled]:[cursor:wait] [min-height:39px] [background:#111111] [border-color:#111111] max-[600px]:[align-self:end]"
                   disabled={domainSubmitting}
                   type="submit"
                 >

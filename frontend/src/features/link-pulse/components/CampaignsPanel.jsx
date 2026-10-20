@@ -107,7 +107,7 @@ function CampaignsPanel() {
                 <tbody>
                   {selectedCampaignLinks.map((link) => (
                     <tr key={link.id}>
-                      <td className="[padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#416d52] [font-weight:700] [white-space:nowrap]">
+                      <td className="[padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#111111] [font-weight:700] [white-space:nowrap]">
                         /{link.shortCode}
                       </td>
                       <td
@@ -156,7 +156,7 @@ function CampaignsPanel() {
         className="[display:flex] [align-items:end] [gap:12px] [margin:24px_0_20px] [padding:18px] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff] max-[600px]:[flex-wrap:wrap] max-[600px]:[padding:13px]"
         onSubmit={handleSubmit}
       >
-        <div className="[display:grid] [width:39px] [height:39px] [flex:0_0_39px] [align-self:center] [place-items:center] [border-radius:7px] [background:#eef3e7] [color:var(--pulse-green)] max-[600px]:[display:none]">
+        <div className="[display:grid] [width:39px] [height:39px] [flex:0_0_39px] [align-self:center] [place-items:center] [background:#f0efea] [color:var(--pulse-green)] max-[600px]:[display:none]">
           <Plus size={19} />
         </div>
         <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700] [flex:1] max-[600px]:[min-width:100%]">
@@ -199,18 +199,18 @@ function CampaignsPanel() {
           return (
             <button
               aria-label={`Open campaign ${campaign.name}`}
-              className="[min-height:220px] [padding:17px] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff] [color:inherit] [text-align:left] [cursor:pointer] [transition:border-color_.16s,_transform_.16s] [&:hover]:[border-color:#bfd1b9] [&:hover]:[transform:translateY(-2px)] [&:focus-visible]:[outline:3px_solid_#91b83d] [&:focus-visible]:[outline-offset:3px] max-[600px]:[min-height:205px]"
+              className="[min-height:220px] [padding:17px] [border:1px_solid_#e7ebe4] [background:#fff] [color:inherit] [text-align:left] [cursor:pointer] [transition:border-color_.16s,_transform_.16s] [&:hover]:[border-color:#a8a151] [&:hover]:[transform:translateY(-2px)] [&:focus-visible]:[outline:2px_solid_#a8a151] [&:focus-visible]:[outline-offset:3px] max-[600px]:[min-height:205px]"
               key={campaign.id}
               onClick={() => setSelectedCampaignId(campaign.id)}
               type="button"
             >
               <div
-                className={`[display:grid] [width:37px] [height:37px] [margin-bottom:14px] [place-items:center] [border-radius:8px] [background:#eff4e9] [color:#527c50] ${
+                className={`[display:grid] [width:37px] [height:37px] [margin-bottom:14px] [place-items:center] [background:#f0efea] [color:#a8a151] ${
                   [
                     "",
-                    "[background:#f4efea] [color:#9a795d]",
-                    "[background:#f0edf4] [color:#78648f]",
-                    "[background:#eaf2f2] [color:#4b7f7d]",
+                    "[background:#f0efea] [color:#a8a151]",
+                    "[background:#f5f5f5] [color:#3a3a3a]",
+                    "[background:#a7bfd9] [color:#2c3e50]",
                   ][index % 4]
                 }`}
               >
@@ -254,7 +254,7 @@ function CampaignsPanel() {
         })}
         {!campaigns.length && (
           <div className="[display:grid] [min-height:190px] [align-content:center] [justify-items:center] [gap:8px] [padding:22px] [color:#99a39c] [text-align:center] [font-size:11px] [grid-column:1_/_-1] [border:1px_dashed_#e0e7de] [border-radius:6px] [background:#fff]">
-            <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [border-radius:50%] [background:#eff4e9] [color:var(--pulse-green)]">
+            <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [background:#f0efea] [color:var(--pulse-green)]">
               <FolderKanban size={20} />
             </span>
             <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">

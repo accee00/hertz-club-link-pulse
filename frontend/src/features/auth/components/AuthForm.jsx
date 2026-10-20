@@ -45,7 +45,7 @@ function AuthForm({ mode }) {
   return (
     <>
       {error && (
-        <div className="[margin-bottom:18px] [padding:12px_14px] [border-left:3px_solid_var(--red)] [background:#f9e9e5] [color:#812f25] [font-size:13px]" role="alert">
+        <div className="[margin-bottom:18px] [padding:12px_14px] [border-left:3px_solid_var(--red)] [background:#f0efea] [color:#8b3a36] [font-size:13px]" role="alert">
           {error}
         </div>
       )}
@@ -53,7 +53,7 @@ function AuthForm({ mode }) {
         {isRegister && (
           <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
             <span>Your name</span>
-            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none]"
+            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:none] [&:focus]:[outline:2px_solid_#a8a151]"
               autoComplete="name"
               maxLength={80}
               minLength={2}
@@ -65,7 +65,7 @@ function AuthForm({ mode }) {
         )}
         <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
           <span>Email address</span>
-          <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none]"
+          <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:none] [&:focus]:[outline:2px_solid_#a8a151]"
             autoComplete="email"
             name="email"
             placeholder="you@example.com"
@@ -76,7 +76,7 @@ function AuthForm({ mode }) {
         <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
           <span>Password</span>
           <span className="[position:relative]">
-            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none] [padding-right:50px]"
+            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:none] [&:focus]:[outline:2px_solid_#a8a151] [padding-right:50px]"
               autoComplete={isRegister ? 'new-password' : 'current-password'}
               minLength={isRegister ? 8 : undefined}
               name="password"
