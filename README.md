@@ -531,7 +531,7 @@ LinkPulse is live and deployed for production:
 
 ---
 
-## Future Roadmap
+## Wht's done
 
 - [x] Link creation with nanoid short codes and custom aliases
 - [x] 6-stage 302 redirect engine with expiry, click caps, and password locks
@@ -541,11 +541,6 @@ LinkPulse is live and deployed for production:
 - [x] Multi-device, browser, referrer, and source analytics dashboards
 - [x] Admin console with platform oversight, link disable toggle, and domain blocklist
 - [x] Production rate limiting on auth, link creation, and password verify endpoints
-- [ ] **Geographic IP Resolution**
-- [ ] **Device-Targeted Routing**
-- [ ] **Custom Branded Domains**
-- [ ] **Atomic Distributed Click Limiting**
-- [ ] **Public Developer API & Webhooks**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
