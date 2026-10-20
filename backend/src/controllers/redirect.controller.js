@@ -6,6 +6,7 @@ import { asyncHandler } from '../utils/async_handler.js';
 import { logClickAsync } from '../utils/click_logger.js';
 import { sendResponse } from '../utils/send_reponse.js';
 import { isDomainBlocked } from '../utils/domain_helper.js';
+import config from '../config/config.js';
 
 const escapeHtml = (value) =>
   value.replace(
@@ -99,7 +100,7 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
       <div class="icon" aria-hidden="true">!</div>
       <h1>This link is unavailable</h1>
       <p>${escapeHtml(message)}</p>
-      <a class="home-link" href="/">Go back to Link Pulse</a>
+      <a class="home-link" href="${escapeHtml(new URL('/dashboard', config.FRONTEND_URL).toString())}">Return to your dashboard</a>
     </main>
   </body>
 </html>`;

@@ -17,6 +17,9 @@ const config = {
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1d',
   PORT: Number(process.env.PORT) || 3000,
   BASE_URL: process.env.BASE_URL ? process.env.BASE_URL.replace(/\/+$/, '') : null,
+  FRONTEND_URL: process.env.FRONTEND_URL
+    ? process.env.FRONTEND_URL.replace(/\/+$/, '')
+    : 'http://localhost:5173',
 };
 
 export { config };
