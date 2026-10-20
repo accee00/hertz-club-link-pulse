@@ -1,3 +1,4 @@
+import express from 'express';
 import { Router } from 'express';
 import {
   createLink,
@@ -5,6 +6,7 @@ import {
   getLinkAnalytics,
   getLinkById,
   getLinkQrCode,
+  importLinks,
   listLinks,
   updateLink,
 } from '../controllers/link.controller.js';
@@ -18,6 +20,12 @@ import {
 const linkRouter = Router();
 
 linkRouter.use(authenticate);
+
+linkRouter.post(
+  '/import',
+  express.text({ type: 'text/csv', limit: '2mb' }),
+  importLinks
+);
 
 linkRouter
   .route('/')

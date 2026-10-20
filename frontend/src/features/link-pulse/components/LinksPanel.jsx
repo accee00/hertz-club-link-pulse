@@ -300,7 +300,6 @@ function LinksPanel({ onCreateLink }) {
       )}
       {importOpen && (
         <LinkImportModal
-          campaigns={campaigns}
           onClose={() => setImportOpen(false)}
           onImport={importLinks}
         />

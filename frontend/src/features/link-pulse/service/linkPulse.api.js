@@ -4,7 +4,9 @@ const API_BASE_URL =
 const request = async (path, token, options = {}) => {
   const headers = new Headers(options.headers);
   headers.set("Authorization", `Bearer ${token}`);
-  if (options.body) headers.set("Content-Type", "application/json");
+  if (options.body && !headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
@@ -32,6 +34,16 @@ const linkPulseApi = {
       method: "POST",
       body: JSON.stringify(details),
     }),
+  importLinks: (token, workspaceId, file) =>
+    request(
+      `/links/import?workspaceId=${encodeURIComponent(workspaceId)}`,
+      token,
+      {
+        method: "POST",
+        headers: { "Content-Type": "text/csv" },
+        body: file,
+      },
+    ),
   updateLink: (token, id, details) =>
     request(`/links/${encodeURIComponent(id)}`, token, {
       method: "PATCH",

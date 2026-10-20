@@ -91,25 +91,16 @@ function LinkPulseProvider({ children }) {
     }
   };
 
-  const importLinks = async (linkDetails) => {
+  const importLinks = async (file) => {
     setError("");
-    const results = [];
-    for (const item of linkDetails) {
-      try {
-        const response = await linkPulseApi.createLink(token, {
-          ...item.details,
-          workspaceId,
-        });
-        results.push({ rowNumber: item.rowNumber, link: response.data.link });
-      } catch (requestError) {
-        results.push({
-          rowNumber: item.rowNumber,
-          error: requestError.message,
-        });
-      }
+    try {
+      const response = await linkPulseApi.importLinks(token, workspaceId, file);
+      await refresh();
+      return response.data.results;
+    } catch (requestError) {
+      setError(requestError.message);
+      throw requestError;
     }
-    await refresh();
-    return results;
   };
 
   const updateLink = async (id, details) => {
