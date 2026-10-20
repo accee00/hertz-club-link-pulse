@@ -187,6 +187,15 @@ function AdminDashboard() {
           <span className="[display:inline-flex] [align-items:center] [gap:6px] [color:#92764e] [font-size:9px] [font-weight:800] [letter-spacing:.8px] max-[600px]:[display:none]">
             <ShieldCheck size={14} /> ADMIN ACCESS
           </span>
+          <button
+            aria-label="Sign out"
+            className="[display:none] [width:36px] [height:36px] [place-items:center] [border:1px_solid_#e5e9e3] [background:#fff] [color:#687570] [cursor:pointer] max-[600px]:[display:grid]"
+            onClick={logout}
+            title="Sign out"
+            type="button"
+          >
+            <LogOut size={17} />
+          </button>
         </header>
         <nav
           aria-label="Mobile admin navigation"

@@ -132,13 +132,24 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
               {navigation.find((item) => item.id === activeSection)?.label}
             </strong>
           </div>
-          <button
-            className="[display:inline-flex] [min-height:40px] [align-items:center] [justify-content:center] [gap:8px] [padding:0_15px] [border:1px_solid_var(--pulse-green)] [border-radius:5px] [background:var(--pulse-green)] [color:#fff] [cursor:pointer] [text-decoration:none] [font-size:12px] [font-weight:700] [transition:transform_.16s,_background_.16s] [&:hover:not(:disabled)]:[transform:translateY(-1px)] [&:hover:not(:disabled)]:[background:var(--pulse-green-dark)] [&:disabled]:[opacity:.65] [&:disabled]:[cursor:wait] [min-height:36px] [font-size:11px] max-[600px]:[min-height:33px] max-[600px]:[padding:0_10px] max-[600px]:[font-size:10px]"
-            onClick={onCreateLink}
-            type="button"
-          >
-            <Plus size={17} /> Create link
-          </button>
+          <div className="[display:flex] [align-items:center] [gap:8px]">
+            <button
+              className="[display:inline-flex] [min-height:40px] [align-items:center] [justify-content:center] [gap:8px] [padding:0_15px] [border:1px_solid_var(--pulse-green)] [border-radius:5px] [background:var(--pulse-green)] [color:#fff] [cursor:pointer] [text-decoration:none] [font-size:12px] [font-weight:700] [transition:transform_.16s,_background_.16s] [&:hover:not(:disabled)]:[transform:translateY(-1px)] [&:hover:not(:disabled)]:[background:var(--pulse-green-dark)] [&:disabled]:[opacity:.65] [&:disabled]:[cursor:wait] [min-height:36px] [font-size:11px] max-[600px]:[min-height:33px] max-[600px]:[padding:0_10px] max-[600px]:[font-size:10px]"
+              onClick={onCreateLink}
+              type="button"
+            >
+              <Plus size={17} /> Create link
+            </button>
+            <button
+              aria-label="Sign out"
+              className="[display:none] [width:36px] [height:36px] [place-items:center] [border:1px_solid_#e5e9e3] [background:#fff] [color:#687570] [cursor:pointer] max-[600px]:[display:grid]"
+              onClick={logout}
+              title="Sign out"
+              type="button"
+            >
+              <LogOut size={17} />
+            </button>
+          </div>
         </header>
         <nav
           aria-label="Mobile main navigation"
