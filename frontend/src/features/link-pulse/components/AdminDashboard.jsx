@@ -123,13 +123,8 @@ function AdminDashboard() {
   return (
     <div className="[display:flex] [min-height:100vh] [background:#f5f5f5] [--admin-accent:#a8a151] [--admin-dark:#111111]">
       <aside className="[position:fixed] [z-index:5] [inset:0_auto_0_0] [display:flex] [width:248px] [flex-direction:column] [padding:26px_17px_16px] [border-right:1px_solid_#e8ebe5] [background:#fff] max-[850px]:[width:205px] max-[850px]:[padding-right:12px] max-[850px]:[padding-left:12px] max-[600px]:[display:none]">
-        <a className="[display:flex] [align-items:center] [gap:11px] [padding:2px_9px_29px] [color:#23332d] [font-size:14px] [font-weight:800] [letter-spacing:1.1px] [text-decoration:none] [font-family:'Manrope',_sans-serif] [padding-bottom:20px]" href="/dashboard">
-          <span className="[color:var(--pulse-green)] [display:grid] [width:36px] [height:36px] [place-items:center] [background:#111111] [color:#a8a151]">
-            <Activity size={20} />
-          </span>
-          <span className="[color:var(--pulse-green)]">
-            LINK<span className="[color:var(--pulse-green)]">PULSE</span>
-          </span>
+        <a className="brand-name [display:flex] [align-items:center] [padding:2px_9px_29px] [color:#111111] [font-weight:800] [letter-spacing:.3px] [text-decoration:none] [font-family:'Manrope',_sans-serif] [padding-bottom:20px]" href="/dashboard">
+          LinkPulse
         </a>
         <div className="select-none [display:flex] [align-items:center] [gap:8px] [margin:0_4px_22px] [padding:11px_10px] [border:1px_solid_#eee6dc] [border-radius:5px] [background:#faf7f1] [color:#826744] [font-size:9px] [font-weight:800] [letter-spacing:1px]">
           <ShieldCheck size={14} /> ADMIN CONSOLE
@@ -159,15 +154,6 @@ function AdminDashboard() {
           ))}
         </nav>
         <div className="[margin-top:auto]">
-          <div className="[padding:15px_13px] [border:1px_solid_#eee9e0] [border-radius:6px] [background:linear-gradient(145deg,_#fcfaf6,_#f7f4ed)]">
-            <span className="[display:grid] [width:30px] [height:30px] [place-items:center] [border-radius:7px] [background:#eee7d9] [color:#866b44]">
-              <ShieldCheck size={17} />
-            </span>
-            <strong className="[display:block] [margin-top:11px] [color:#504435] [font-size:12px] [font-family:'Manrope',_sans-serif]">Platform safety</strong>
-            <p className="[margin:5px_0_0] [color:#91897c] [font-size:10px] [line-height:1.55]">
-              Review suspicious links and manage blocked domains from one place.
-            </p>
-          </div>
           <div className="[display:flex] [align-items:center] [gap:9px] [margin-top:15px] [padding:14px_1px_0] [border-top:1px_solid_#eff1ed]">
             <span className="[display:grid] [width:34px] [height:34px] [flex:0_0_34px] [place-items:center] [background:#f0efea] [color:#a8a151] [font-size:13px] [font-weight:800]">
               {user.name.slice(0, 1).toUpperCase()}
@@ -190,8 +176,8 @@ function AdminDashboard() {
       </aside>
       <main className="[width:calc(100%_-_248px)] [min-height:100vh] [margin-left:248px] max-[850px]:[width:calc(100%_-_205px)] max-[850px]:[margin-left:205px] max-[600px]:[width:100%] max-[600px]:[margin-left:0]">
         <header className="[position:sticky] [z-index:4] [top:0] [display:flex] [height:64px] [align-items:center] [justify-content:space-between] [padding:0_clamp(24px,4.2vw,64px)] [border-bottom:1px_solid_#e9ece7] [background:rgba(255,255,255,.94)] [backdrop-filter:blur(12px)] max-[600px]:[height:56px] max-[600px]:[padding:0_16px]">
-          <div className="[display:none] [align-items:center] [gap:7px] [color:var(--pulse-green)] [font-size:12px] [font-weight:800] [letter-spacing:.5px] max-[600px]:[display:inline-flex]">
-            <Activity size={18} /> LINK PULSE <span className="max-[600px]:[padding:3px_5px] max-[600px]:[border-radius:3px] max-[600px]:[background:#f5f0e8] max-[600px]:[color:#8a704e] max-[600px]:[font-size:8px]">ADMIN</span>
+          <div className="brand-name [display:none] [align-items:center] [color:var(--pulse-green)] [font-weight:800] [letter-spacing:.3px] max-[600px]:[display:inline-flex]">
+            LinkPulse
           </div>
           <div className="[display:flex] [align-items:center] [gap:10px] [color:#99a19c] [font-size:11px] max-[600px]:[display:none]">
             <span>Platform</span>
@@ -242,13 +228,8 @@ function AdminDashboard() {
             <section className="[padding:29px_0_35px] max-[600px]:[padding-top:22px]">
               <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:2px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:12px]">
                 <div>
-                  <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px] [margin:0_0_8px] [color:#8c704c] [font-size:9px]">PLATFORM HEALTH</p>
-                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">Admin overview.</h1>
-                  <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px]">Monitor Link Pulse activity, accounts, and link safety.</p>
+                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">Overview</h1>
                 </div>
-                <span className="[color:#95a099] [font-size:9px] [font-weight:800] [letter-spacing:1px] [display:inline-flex] [align-items:center] [gap:7px] [color:#75827a] max-[600px]:[font-size:8px]">
-                  <i className="[width:6px] [height:6px] [background:#8ca870]" /> LIVE PLATFORM DATA
-                </span>
               </div>
               <div className="[display:grid] [grid-template-columns:repeat(4,minmax(0,1fr))] [gap:11px] [margin-bottom:18px] max-[1100px]:[grid-template-columns:repeat(2,minmax(0,1fr))] max-[600px]:[gap:8px]">
                 {[
@@ -280,7 +261,6 @@ function AdminDashboard() {
                 <div className="[display:flex] [min-height:65px] [align-items:center] [justify-content:space-between] [gap:15px] [padding:12px_17px] [border-bottom:1px_solid_#edf0eb]">
                   <div>
                     <h2 className="[margin:0] [color:#39463e] [font-size:13px] [font-family:'Manrope',sans-serif]">Recently created links</h2>
-                    <p className="[margin:5px_0_0] [color:#9aa39c] [font-size:9px]">Latest short links across all workspaces</p>
                   </div>
                   <button
                     className="[display:inline-flex] [align-items:center] [gap:4px] [margin-top:7px] [padding:0] [border:0] [background:none] [color:var(--pulse-green)] [cursor:pointer] [font-size:11px] [font-weight:700] [margin:0] [white-space:nowrap]"
@@ -340,11 +320,7 @@ function AdminDashboard() {
               <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:2px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:12px]">
                 <div>
                   <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px] [margin:0_0_8px] [color:#8c704c] [font-size:9px]">PLATFORM GOVERNANCE</p>
-                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">All short links.</h1>
-                  <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px]">
-                    Review every workspace link and disable suspicious
-                    redirects.
-                  </p>
+                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">All links</h1>
                 </div>
                 <span className="[display:inline-flex] [align-items:center] [gap:6px] [padding:8px_10px] [border:1px_solid_#e9e6de] [border-radius:4px] [color:#85785f] [font-size:9px] [font-weight:800] [letter-spacing:.8px] [white-space:nowrap]">
                   {number(pagination.total)} TOTAL
@@ -505,9 +481,7 @@ function AdminDashboard() {
           )}
           {section === "users" && (
             <AdminDataTable
-              eyebrow="ACCOUNT DIRECTORY"
-              title="Platform users."
-              description="All registered Link Pulse accounts."
+              title="Users"
               columns={["USER", "EMAIL", "ROLE", "JOINED"]}
               rows={users.map((item) => [
                 item.name,
@@ -562,9 +536,7 @@ function AdminDashboard() {
                 </button>
               </form>
               <AdminDataTable
-                eyebrow="TEAM ORGANIZATION"
-                title="All workspaces."
-                description="Workspaces and their owners across the platform."
+                title="Workspaces"
                 columns={["WORKSPACE", "OWNER", "EMAIL", "CREATED"]}
                 rows={workspaces.map((item) => [
                   item.name,
@@ -578,9 +550,7 @@ function AdminDashboard() {
           )}
           {section === "campaigns" && (
             <AdminDataTable
-              eyebrow="CAMPAIGN DIRECTORY"
-              title="All campaigns."
-              description="Campaigns organized by workspace and account owner."
+              title="Campaigns"
               columns={["CAMPAIGN", "WORKSPACE", "OWNER", "CREATED"]}
               rows={campaigns.map((item) => [
                 item.name,
@@ -595,8 +565,7 @@ function AdminDashboard() {
             <section className="[padding:29px_0_35px] max-[600px]:[padding-top:22px]">
               <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:2px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:12px]">
                 <div>
-                  <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px] [margin:0_0_8px] [color:#8c704c] [font-size:9px]">REDIRECT SAFETY</p>
-                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">Domain blocklist.</h1>
+                  <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">Domain blocklist</h1>
                   <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px]">
                     Blocked domains cannot be used as destinations for new
                     links.
@@ -644,7 +613,6 @@ function AdminDashboard() {
                 <div className="[display:flex] [min-height:65px] [align-items:center] [justify-content:space-between] [gap:15px] [padding:12px_17px] [border-bottom:1px_solid_#edf0eb]">
                   <div>
                     <h2 className="[margin:0] [color:#39463e] [font-size:13px] [font-family:'Manrope',sans-serif]">Blocked domains</h2>
-                    <p className="[margin:5px_0_0] [color:#9aa39c] [font-size:9px]">Domains currently restricted on the platform</p>
                   </div>
                 </div>
                 <div className="[overflow-x:auto]">
@@ -690,25 +658,19 @@ function AdminDashboard() {
               </section>
             </section>
           )}
-          <footer className="[display:flex] [justify-content:space-between] [padding:15px_0_20px] [border-top:1px_solid_#eaede8] [color:#a2aaa4] [font-size:8px] [font-weight:700] [letter-spacing:1px] max-[600px]:[font-size:7px]">
-            <span className="[&:last-child]:[font-weight:500] [&:last-child]:[letter-spacing:0]">LINK PULSE · ADMIN</span>
-            <span className="[&:last-child]:[font-weight:500] [&:last-child]:[letter-spacing:0]">Platform-wide view · changes apply immediately</span>
-          </footer>
         </div>
       </main>
     </div>
   );
 }
 
-function AdminDataTable({ eyebrow, title, description, columns, rows, empty }) {
+function AdminDataTable({ title, columns, rows, empty }) {
   const { loading } = useAdmin();
   return (
     <section className="[padding:29px_0_35px] max-[600px]:[padding-top:22px]">
       <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:2px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:12px]">
         <div>
-          <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px] [margin:0_0_8px] [color:#8c704c] [font-size:9px]">{eyebrow}</p>
           <h1 className="[margin:0] [color:#2d3832] [font-size:clamp(26px,2.5vw,35px)] [font-weight:650] [letter-spacing:-.5px] [font-family:'Manrope',sans-serif] max-[600px]:[font-size:27px]">{title}</h1>
-          <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#818c84] [&:last-child]:[font-size:12px]">{description}</p>
         </div>
         <span className="[display:inline-flex] [align-items:center] [gap:6px] [padding:8px_10px] [border:1px_solid_#e9e6de] [border-radius:4px] [color:#85785f] [font-size:9px] [font-weight:800] [letter-spacing:.8px] [white-space:nowrap]">{number(rows.length)} TOTAL</span>
       </div>

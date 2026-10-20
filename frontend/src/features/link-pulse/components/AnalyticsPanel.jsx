@@ -64,9 +64,7 @@ function AnalyticsPanel() {
     <section className="[padding:9px_0_35px] max-[600px]:[padding-top:5px]">
       <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:3px_0_23px] [align-items:center] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:14px] max-[600px]:[margin-bottom:17px] max-[600px]:[align-items:stretch]">
         <div>
-          <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [margin-bottom:8px] [font-size:9px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#7c8780] [&:last-child]:[font-size:12px] max-[600px]:[&:last-child]:[max-width:340px] max-[600px]:[&:last-child]:[line-height:1.5]">REAL SIGNAL, REAL RESULTS</p>
-          <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:25px]">Know what’s working.</h1>
-          <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#7c8780] [&:last-child]:[font-size:12px] max-[600px]:[&:last-child]:[max-width:340px] max-[600px]:[&:last-child]:[line-height:1.5]">See how your links and campaigns are earning attention.</p>
+          <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:25px]">Analytics</h1>
         </div>
         <div className="[display:flex] [gap:8px] max-[600px]:[display:grid] max-[600px]:[grid-template-columns:1fr_1fr]">
           <label className="[position:absolute] [width:1px] [height:1px] [overflow:hidden] [clip:rect(0,0,0,0)] [white-space:nowrap] [clip-path:inset(50%)]" htmlFor="analytics-target">
@@ -124,11 +122,8 @@ function AnalyticsPanel() {
           <span className="[display:grid] [width:39px] [height:39px] [margin-bottom:4px] [place-items:center] [background:#f0efea] [color:var(--pulse-green)]">
             <BarChart3 size={20} />
           </span>
-          <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">Your analytics will show up here.</strong>
-          <span>
-            Create a link or campaign first, and its click activity will appear
-            here.
-          </span>
+          <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">No analytics yet</strong>
+          <span>Create a link to see click data.</span>
         </div>
       ) : (
         analytics && (
@@ -217,7 +212,7 @@ function AnalyticsPanel() {
                 <div className="[display:flex] [align-items:start] [justify-content:space-between] [gap:12px]">
                   <div>
                     <h2 className="[margin:0] [color:#34433a] [font-size:14px] [font-family:'Manrope',_sans-serif]">Devices</h2>
-                    <p className="[margin:5px_0_0] [color:#99a39c] [font-size:9px]">Where visitors are clicking</p>
+                    <p className="[margin:5px_0_0] [color:#99a39c] [font-size:9px]">By device</p>
                   </div>
                   <ArrowUpRight size={17} />
                 </div>
@@ -252,7 +247,7 @@ function AnalyticsPanel() {
                 <div className="[display:flex] [align-items:start] [justify-content:space-between] [gap:12px]">
                   <div>
                     <h2 className="[margin:0] [color:#34433a] [font-size:14px] [font-family:'Manrope',_sans-serif]">Top referrers</h2>
-                    <p className="[margin:5px_0_0] [color:#99a39c] [font-size:9px]">Where your audience finds you</p>
+                    <p className="[margin:5px_0_0] [color:#99a39c] [font-size:9px]">By source</p>
                   </div>
                   <ArrowUpRight size={17} />
                 </div>

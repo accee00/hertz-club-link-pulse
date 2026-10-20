@@ -160,13 +160,13 @@ function DashboardPage() {
           <section className="[border-top:1px_solid_var(--line)] [border-bottom:1px_solid_var(--line)] [background:rgba(255,255,255,.62)] [display:flex] [align-items:center] [justify-content:space-between] [min-height:210px] [padding:36px_clamp(24px,_4vw,_55px)] max-[700px]:[min-height:190px] max-[700px]:[padding:25px_20px]">
             <div>
               <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [&:last-child]:[margin:9px_0_0] [&:last-child]:[color:var(--muted)] [&:last-child]:[font-size:13px]">
-                YOUR CLUB, AT A GLANCE
+                MEMBERSHIP
               </p>
               <h2 className="[margin:0] [font-size:23px] [font-family:'Manrope',_sans-serif] max-[700px]:[max-width:240px] max-[700px]:[font-size:21px]">
-                Every journey starts somewhere.
+                Your membership
               </h2>
               <p className="[&:last-child]:[margin:9px_0_0] [&:last-child]:[color:var(--muted)] [&:last-child]:[font-size:13px]">
-                Your membership is active. We’re glad you’re here.
+                Your membership is active.
               </p>
             </div>
             <span className="[display:grid] [width:48px] [height:48px] [place-items:center] [border:1px_solid_#cad7cd] [border-radius:50%] [color:var(--green)]">

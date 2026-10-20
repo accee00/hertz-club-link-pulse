@@ -64,12 +64,12 @@ function LinkCreateModal({ campaigns, onClose, onCreate }) {
               className="[margin:0] [color:#293931] [font-size:23px] [font-family:'Manrope',_sans-serif]"
               id="create-link-title"
             >
-              {step === 1 ? "Where should it go?" : "Make it yours."}
+              {step === 1 ? "Link destination" : "Link settings"}
             </h2>
             <p className="[&:last-child]:[margin:7px_0_0] [&:last-child]:[color:#849088] [&:last-child]:[font-size:11px]">
               {step === 1
-                ? "Add the destination and choose a memorable alias."
-                : "Add a campaign and optional access rules."}
+                ? "Enter a destination and optional alias."
+                : "Choose a campaign and access settings."}
             </p>
           </div>
           <button

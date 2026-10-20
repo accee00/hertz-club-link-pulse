@@ -141,15 +141,9 @@ function CampaignsPanel() {
     <section className="[padding:9px_0_35px] max-[600px]:[padding-top:5px]">
       <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:3px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:14px] max-[600px]:[margin-bottom:17px]">
         <div>
-          <p className="[margin:0_0_8px] [color:var(--green)] [font-size:9px] [font-weight:700] [letter-spacing:1.8px]">
-            KEEP YOUR WORK IN SYNC
-          </p>
           <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:25px]">
-            Campaigns with a pulse.
+            Campaigns
           </h1>
-          <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#7c8780] [&:last-child]:[font-size:12px] max-[600px]:[&:last-child]:[max-width:340px] max-[600px]:[&:last-child]:[line-height:1.5]">
-            Group related links and see how each campaign is performing.
-          </p>
         </div>
       </div>
       <form

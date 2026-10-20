@@ -26,17 +26,16 @@ function DashboardContent() {
     >
       <div className="[display:flex] [min-height:62px] [align-items:center] [justify-content:space-between] [gap:15px] [border-bottom:1px_solid_#e9ece7] max-[600px]:[min-height:53px]">
         <div className="[display:flex] [align-items:center] [gap:16px] max-[600px]:[display:grid] max-[600px]:[gap:5px]">
-          <span className="[color:#95a099] [font-size:9px] [font-weight:800] [letter-spacing:1px] max-[600px]:[font-size:8px]">
-            {loading ? "SYNCING YOUR WORKSPACE" : "YOUR WORKSPACE, AT A GLANCE"}
-          </span>
           <strong className="[display:flex] [align-items:center] [gap:9px] [color:#617067] [font-size:11px] [font-weight:600] max-[600px]:[gap:6px] max-[600px]:[font-size:9px]">
             {links.length} links <i className="[width:3px] [height:3px] [border-radius:50%] [background:#aab4ac]" /> {totalClicks.toLocaleString()} clicks{" "}
             <i className="[width:3px] [height:3px] [border-radius:50%] [background:#aab4ac]" /> {campaigns.length} campaigns
           </strong>
         </div>
-        <span className="[color:#95a099] [font-size:9px] [font-weight:800] [letter-spacing:1px] [display:inline-flex] [align-items:center] [gap:7px] [color:#75827a] max-[600px]:[font-size:8px]">
-        <i className="[width:6px] [height:6px] [background:#8ca870]" /> LIVE DATA
-        </span>
+        {loading && (
+          <span className="[color:#95a099] [font-size:9px]" aria-live="polite">
+            Loading
+          </span>
+        )}
       </div>
       {error && (
         <div className="[display:flex] [align-items:center] [justify-content:space-between] [gap:14px] [margin-top:17px] [padding:12px_14px] [border:1px_solid_#efd2ca] [border-radius:5px] [background:#fff4f0] [color:#8b4033] [font-size:12px]" role="alert">
@@ -57,25 +56,21 @@ function DashboardContent() {
           <span className="[position:absolute] [top:14px] [right:16px] [display:grid] [width:30px] [height:30px] [place-items:center] [font-size:16px] [font-weight:700] [background:#f0efea] [color:#a8a151] max-[600px]:[top:10px] max-[600px]:[right:11px] max-[600px]:[width:25px] max-[600px]:[height:25px]">↗</span>
           <span className="[color:#96a099] [font-size:9px] [font-weight:800] [letter-spacing:1.1px] max-[600px]:[font-size:8px]">TOTAL LINKS</span>
           <strong className="[margin-top:1px] [color:#273831] [font-size:26px] [font-weight:700] [line-height:1.1] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:23px]">{links.length}</strong>
-          <span className="[color:#9aa39d] [font-size:10px] max-[600px]:[font-size:9px]">Across this workspace</span>
         </article>
         <article className="[position:relative] [display:grid] [min-height:123px] [align-content:start] [gap:7px] [padding:17px_18px] [border:1px_solid_#e8ece6] [border-radius:6px] [background:#fff] max-[600px]:[min-height:110px] max-[600px]:[padding:13px]">
           <span className="[position:absolute] [top:14px] [right:16px] [display:grid] [width:30px] [height:30px] [place-items:center] [border-radius:8px] [font-size:16px] [font-weight:700] [background:#f2f0e7] [color:#8b7650] max-[600px]:[top:10px] max-[600px]:[right:11px] max-[600px]:[width:25px] max-[600px]:[height:25px]">⌁</span>
           <span className="[color:#96a099] [font-size:9px] [font-weight:800] [letter-spacing:1.1px] max-[600px]:[font-size:8px]">TOTAL CLICKS</span>
           <strong className="[margin-top:1px] [color:#273831] [font-size:26px] [font-weight:700] [line-height:1.1] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:23px]">{totalClicks.toLocaleString()}</strong>
-          <span className="[color:#9aa39d] [font-size:10px] max-[600px]:[font-size:9px]">Lifetime link visits</span>
         </article>
         <article className="[position:relative] [display:grid] [min-height:123px] [align-content:start] [gap:7px] [padding:17px_18px] [border:1px_solid_#e8ece6] [border-radius:6px] [background:#fff] max-[600px]:[min-height:110px] max-[600px]:[padding:13px]">
           <span className="[position:absolute] [top:14px] [right:16px] [display:grid] [width:30px] [height:30px] [place-items:center] [border-radius:8px] [font-size:16px] [font-weight:700] [background:#edf4ee] [color:#548159] max-[600px]:[top:10px] max-[600px]:[right:11px] max-[600px]:[width:25px] max-[600px]:[height:25px]">✓</span>
           <span className="[color:#96a099] [font-size:9px] [font-weight:800] [letter-spacing:1.1px] max-[600px]:[font-size:8px]">ACTIVE LINKS</span>
           <strong className="[margin-top:1px] [color:#273831] [font-size:26px] [font-weight:700] [line-height:1.1] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:23px]">{activeLinks}</strong>
-          <span className="[color:#9aa39d] [font-size:10px] max-[600px]:[font-size:9px]">Ready to redirect</span>
         </article>
         <article className="[position:relative] [display:grid] [min-height:123px] [align-content:start] [gap:7px] [padding:17px_18px] [border:1px_solid_#e8ece6] [border-radius:6px] [background:#fff] max-[600px]:[min-height:110px] max-[600px]:[padding:13px]">
           <span className="[position:absolute] [top:14px] [right:16px] [display:grid] [width:30px] [height:30px] [place-items:center] [border-radius:8px] [font-size:16px] [font-weight:700] [background:#f3edf0] [color:#8a6575] max-[600px]:[top:10px] max-[600px]:[right:11px] max-[600px]:[width:25px] max-[600px]:[height:25px]">◫</span>
           <span className="[color:#96a099] [font-size:9px] [font-weight:800] [letter-spacing:1.1px] max-[600px]:[font-size:8px]">CAMPAIGNS</span>
           <strong className="[margin-top:1px] [color:#273831] [font-size:26px] [font-weight:700] [line-height:1.1] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:23px]">{campaigns.length}</strong>
-          <span className="[color:#9aa39d] [font-size:10px] max-[600px]:[font-size:9px]">Organizing your work</span>
         </article>
       </section>
       {activeSection === "links" && (
@@ -92,10 +87,6 @@ function DashboardContent() {
           onCreate={createLink}
         />
       )}
-      <footer className="[display:flex] [justify-content:space-between] [padding:15px_0_20px] [border-top:1px_solid_#eaede8] [color:#a2aaa4] [font-size:8px] [font-weight:700] [letter-spacing:1px] max-[600px]:[font-size:7px]">
-        <span className="[&:last-child]:[font-weight:500] [&:last-child]:[letter-spacing:0]">LINK PULSE</span>
-        <span className="[&:last-child]:[font-weight:500] [&:last-child]:[letter-spacing:0]">Make every link count.</span>
-      </footer>
     </AppShell>
   );
 }

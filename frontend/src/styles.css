@@ -47,6 +47,22 @@ body {
   margin: 0;
 }
 
+#root
+  :where(p, label, button, input, select, textarea, td, th, small, span, a):not(
+    h1 span,
+    h2 span,
+    h3 span,
+    h4 span,
+    h5 span,
+    h6 span
+  ) {
+  font-size: max(14px, 0.95em);
+}
+
+#root .brand-name {
+  font-size: 18px;
+}
+
 button,
 input {
   font: inherit;
@@ -57,6 +73,14 @@ a:focus-visible,
 input:focus-visible {
   outline: 2px solid #a8a151;
   outline-offset: 3px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #e5e5e5 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 @keyframes rise-in {

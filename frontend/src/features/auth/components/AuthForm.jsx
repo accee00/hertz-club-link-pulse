@@ -117,9 +117,9 @@ function AuthForm({ mode }) {
         </button>
       </form>
       <p className="[margin:22px_0_0] [color:#66716c] [text-align:center] [font-size:13px]">
-        {isRegister ? 'Already have an account?' : 'New to Link Pulse?'}{' '}
+        {isRegister ? 'Already have an account?' : 'New to LinkPulse?'}{' '}
         <Link to={isRegister ? '/login' : '/register'}>
-          {isRegister ? 'Sign in' : 'Create an account'}
+          {isRegister ? 'Sign in' : 'Register'}
         </Link>
       </p>
     </>

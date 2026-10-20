@@ -78,9 +78,7 @@ function LinksPanel({ onCreateLink }) {
     <section className="[padding:9px_0_35px] max-[600px]:[padding-top:5px]">
       <div className="[display:flex] [align-items:end] [justify-content:space-between] [gap:20px] [margin:3px_0_23px] max-[600px]:[align-items:start] max-[600px]:[flex-direction:column] max-[600px]:[gap:14px] max-[600px]:[margin-bottom:17px]">
         <div>
-          <p className="[margin:0_0_13px] [color:var(--green)] [font-size:10px] [font-weight:700] [letter-spacing:1.8px] [margin-bottom:8px] [font-size:9px] [&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#7c8780] [&:last-child]:[font-size:12px] max-[600px]:[&:last-child]:[max-width:340px] max-[600px]:[&:last-child]:[line-height:1.5]">YOUR LINK LIBRARY</p>
-          <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:25px]">Links that move you forward.</h1>
-          <p className="[&:last-child]:[margin:8px_0_0] [&:last-child]:[color:#7c8780] [&:last-child]:[font-size:12px] max-[600px]:[&:last-child]:[max-width:340px] max-[600px]:[&:last-child]:[line-height:1.5]">One place to create, organize, and keep an eye on every link.</p>
+          <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif] max-[600px]:[font-size:25px]">Links</h1>
         </div>
         <div className="[display:flex] [flex:0_0_auto] [align-items:center] [gap:8px] max-[600px]:[width:100%]">
           <button
@@ -102,7 +100,7 @@ function LinksPanel({ onCreateLink }) {
       <div className="[display:flex] [align-items:center] [justify-content:space-between] [gap:15px] [margin-bottom:12px] max-[600px]:[align-items:stretch] max-[600px]:[flex-direction:column] max-[600px]:[gap:8px]">
         <label className="[display:flex] [width:min(100%,_340px)] [height:38px] [align-items:center] [gap:9px] [padding:0_11px] [border:1px_solid_#e4e9e2] [border-radius:5px] [background:#fff] [color:#8d9891] max-[600px]:[width:100%]">
           <Search size={17} />
-          <input className="[width:100%] [border:0] [outline:none] [background:transparent] [color:var(--ink)] [font-size:11px] [&::placeholder]:[color:#a1aaa5]"
+          <input className="[width:100%] [border:0] [outline:none] [&:focus]:[outline:none] [background:transparent] [color:var(--ink)] [font-size:11px] [&::placeholder]:[color:#a1aaa5]"
             aria-label="Search links"
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search links or destinations"
@@ -232,12 +230,12 @@ function LinksPanel({ onCreateLink }) {
             <strong className="[color:#45544b] [font-size:14px] [font-family:'Manrope',_sans-serif]">
               {links.length
                 ? "No links match these filters."
-                : "Your next great link starts here."}
+                : "No links yet."}
             </strong>
             <span>
               {links.length
                 ? "Try another search or status filter."
-                : "Create your first short link and see it come to life."}
+                : "Create a link to get started."}
             </span>
             {!links.length && (
               <button
