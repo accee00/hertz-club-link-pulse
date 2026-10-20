@@ -62,6 +62,42 @@ const listAllWorkspaces = asyncHandler(async (req, res) => {
   );
 });
 
+const createWorkspaceForUser = asyncHandler(async (req, res) => {
+  const { name, ownerId } = req.body;
+  const owner = await User.findById(ownerId).select('name email role');
+
+  if (!owner) {
+    throw new ApiError({
+      statusCode: 404,
+      message: 'Workspace owner not found',
+    });
+  }
+
+  const workspace = await Workspace.create({ name, owner: owner._id });
+
+  return sendResponse(
+    res,
+    new ApiResponse({
+      statusCode: 201,
+      message: 'Workspace created successfully',
+      data: {
+        workspace: {
+          id: workspace.id,
+          name: workspace.name,
+          owner: {
+            id: owner.id,
+            name: owner.name,
+            email: owner.email,
+            role: owner.role,
+          },
+          createdAt: workspace.createdAt,
+          updatedAt: workspace.updatedAt,
+        },
+      },
+    })
+  );
+});
+
 const listAllCampaigns = asyncHandler(async (req, res) => {
   const campaigns = await Campaign.find()
     .sort({ createdAt: -1 })
@@ -407,6 +443,7 @@ const getPlatformAnalytics = asyncHandler(async (req, res) => {
 });
 
 export {
+  createWorkspaceForUser,
   createBlockedDomain,
   deleteBlockedDomain,
   getPlatformAnalytics,

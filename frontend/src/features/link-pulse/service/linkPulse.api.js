@@ -25,6 +25,11 @@ const request = async (path, token, options = {}) => {
 
 const linkPulseApi = {
   workspaces: (token) => request("/workspaces", token),
+  createWorkspace: (token, name) =>
+    request("/workspaces", token, {
+      method: "POST",
+      body: JSON.stringify({ name }),
+    }),
   links: (token, workspaceId) =>
     request(`/links?workspaceId=${encodeURIComponent(workspaceId)}`, token),
   campaigns: (token, workspaceId) =>

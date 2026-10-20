@@ -81,7 +81,9 @@ function DashboardContent() {
       {activeSection === "links" && (
         <LinksPanel onCreateLink={() => setCreateOpen(true)} />
       )}
-      {activeSection === "campaigns" && <CampaignsPanel />}
+      {activeSection === "campaigns" && (
+        <CampaignsPanel />
+      )}
       {activeSection === "analytics" && <AnalyticsPanel />}
       {createOpen && (
         <LinkCreateModal

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Activity,
   BarChart3,
@@ -18,7 +19,23 @@ const navigation = [
 
 function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
   const { user, logout } = useAuth();
-  const { workspaces, workspaceId, setWorkspaceId } = useLinkPulse();
+  const { workspaces, workspaceId, setWorkspaceId, createWorkspace } =
+    useLinkPulse();
+  const [workspaceName, setWorkspaceName] = useState("");
+  const [workspaceSubmitting, setWorkspaceSubmitting] = useState(false);
+
+  const handleCreateWorkspace = async (event) => {
+    event.preventDefault();
+    setWorkspaceSubmitting(true);
+    try {
+      await createWorkspace(workspaceName.trim());
+      setWorkspaceName("");
+    } catch {
+      // The Link Pulse provider exposes the API error in the dashboard alert.
+    } finally {
+      setWorkspaceSubmitting(false);
+    }
+  };
 
   return (
     <div className="[display:flex] [min-height:100vh] [background:#f7f8f5] [--pulse-green:#245e4e] [--pulse-green-dark:#183f35] [--pulse-lime:#d5f274]">
@@ -48,6 +65,27 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
               </option>
             ))}
           </select>
+          <form className="[display:flex] [gap:6px]" onSubmit={handleCreateWorkspace}>
+            <input
+              aria-label="New workspace name"
+              className="[min-width:0] [height:34px] [padding:0_8px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [font-size:11px] [flex:1]"
+              maxLength={80}
+              minLength={2}
+              onChange={(event) => setWorkspaceName(event.target.value)}
+              placeholder="New workspace"
+              required
+              value={workspaceName}
+            />
+            <button
+              aria-label="Create workspace"
+              className="[display:grid] [width:34px] [height:34px] [place-items:center] [border:0] [border-radius:5px] [background:var(--pulse-green)] [color:#fff] [cursor:pointer] [&:disabled]:[opacity:.65]"
+              disabled={workspaceSubmitting}
+              title="Create workspace"
+              type="submit"
+            >
+              <Plus size={16} />
+            </button>
+          </form>
         </div>
         <span className="select-none [color:#9ba49f] [font-size:9px] [font-weight:800] [letter-spacing:1.35px] [padding:9px_12px_10px]">WORKSPACE</span>
         <nav className="[display:grid] [gap:4px]" aria-label="Main navigation">
@@ -116,6 +154,64 @@ function AppShell({ activeSection, onNavigate, onCreateLink, children }) {
             <Plus size={17} /> Create link
           </button>
         </header>
+        <nav
+          aria-label="Mobile main navigation"
+          className="[display:none] max-[600px]:[display:flex] [gap:5px] [overflow-x:auto] [padding:8px_16px] [border-bottom:1px_solid_#e9ece7] [background:#fff]"
+        >
+          {navigation.map(({ id, label, icon: Icon }) => (
+            <button
+              aria-current={activeSection === id ? "page" : undefined}
+              className={`[display:inline-flex] [min-height:34px] [align-items:center] [gap:6px] [padding:0_10px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [color:#69756f] [white-space:nowrap] [font-size:10px] ${
+                activeSection === id
+                  ? "[border-color:#cbd9c8] [background:#edf3e7] [color:var(--pulse-green-dark)]"
+                  : ""
+              }`}
+              key={id}
+              onClick={() => onNavigate(id)}
+              type="button"
+            >
+              <Icon size={14} />
+              {label}
+            </button>
+          ))}
+        </nav>
+        <div className="[display:none] max-[600px]:[display:flex] [align-items:center] [gap:7px] [padding:8px_16px] [border-bottom:1px_solid_#e9ece7] [background:#fff]">
+          <label className="[color:#89938d] [font-size:10px]" htmlFor="mobile-workspace-select">
+            Workspace
+          </label>
+          <select
+            className="[min-width:0] [height:32px] [padding:0_7px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fafbf9] [color:#36433d] [font-size:10px] [flex:1]"
+            id="mobile-workspace-select"
+            onChange={(event) => setWorkspaceId(event.target.value)}
+            value={workspaceId}
+          >
+            {workspaces.map((workspace) => (
+              <option key={workspace.id} value={workspace.id}>
+                {workspace.name}
+              </option>
+            ))}
+          </select>
+          <form className="[display:flex] [gap:4px]" onSubmit={handleCreateWorkspace}>
+            <input
+              aria-label="New workspace name"
+              className="[width:100px] [height:32px] [padding:0_6px] [border:1px_solid_#e5e9e3] [border-radius:5px] [font-size:10px]"
+              maxLength={80}
+              minLength={2}
+              onChange={(event) => setWorkspaceName(event.target.value)}
+              placeholder="New workspace"
+              required
+              value={workspaceName}
+            />
+            <button
+              aria-label="Create workspace"
+              className="[display:grid] [width:32px] [height:32px] [place-items:center] [border:0] [border-radius:5px] [background:var(--pulse-green)] [color:#fff]"
+              disabled={workspaceSubmitting}
+              type="submit"
+            >
+              <Plus size={15} />
+            </button>
+          </form>
+        </div>
         <div className="[width:min(100%,_1440px)] [min-height:calc(100vh_-_64px)] [margin:0_auto] [padding:0_clamp(24px,_4.2vw,_64px)] max-[850px]:[padding-right:22px] max-[850px]:[padding-left:22px] max-[600px]:[padding:0_16px]">{children}</div>
       </main>
     </div>

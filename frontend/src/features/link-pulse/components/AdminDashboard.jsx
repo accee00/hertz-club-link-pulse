@@ -50,6 +50,7 @@ function AdminDashboard() {
     refresh,
     loadLinks,
     updateLinkStatus,
+    createWorkspace,
     addBlockedDomain,
     removeBlockedDomain,
   } = useAdmin();
@@ -58,7 +59,10 @@ function AdminDashboard() {
   const [status, setStatus] = useState("");
   const [domain, setDomain] = useState("");
   const [domainSubmitting, setDomainSubmitting] = useState(false);
-  const [busyLink, setBusyLink] = useState("");
+  const [busyLink, setBusyLink] = useState(null);
+  const [workspaceName, setWorkspaceName] = useState("");
+  const [workspaceOwnerId, setWorkspaceOwnerId] = useState("");
+  const [workspaceSubmitting, setWorkspaceSubmitting] = useState(false);
   const activeSection = sections.find((item) => item.id === section);
 
   const searchLinks = (event) => {
@@ -90,11 +94,29 @@ function AdminDashboard() {
       await updateLinkStatus(
         link.id,
         link.status === "active" ? "disabled" : "active",
+        { search, status, page: pagination.page },
       );
     } catch {
       // The admin provider exposes the API error in the dashboard alert.
     } finally {
-      setBusyLink("");
+      setBusyLink(null);
+    }
+  };
+
+  const submitWorkspace = async (event) => {
+    event.preventDefault();
+    setWorkspaceSubmitting(true);
+    try {
+      await createWorkspace({
+        name: workspaceName.trim(),
+        ownerId: workspaceOwnerId,
+      });
+      setWorkspaceName("");
+      setWorkspaceOwnerId("");
+    } catch {
+      // The admin provider exposes the API error in the dashboard alert.
+    } finally {
+      setWorkspaceSubmitting(false);
     }
   };
 
@@ -180,6 +202,27 @@ function AdminDashboard() {
             <ShieldCheck size={14} /> ADMIN ACCESS
           </span>
         </header>
+        <nav
+          aria-label="Mobile admin navigation"
+          className="[display:none] max-[600px]:[display:flex] [gap:5px] [overflow-x:auto] [padding:8px_16px] [border-bottom:1px_solid_#e9ece7] [background:#fff]"
+        >
+          {sections.map(({ id, label, icon: Icon }) => (
+            <button
+              aria-current={section === id ? "page" : undefined}
+              className={`[display:inline-flex] [min-height:34px] [align-items:center] [gap:6px] [padding:0_10px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [color:#69756f] [white-space:nowrap] [font-size:10px] ${
+                section === id
+                  ? "[border-color:#e5d8c3] [background:#f5f0e8] [color:#644e35]"
+                  : ""
+              }`}
+              key={id}
+              onClick={() => changeSection(id)}
+              type="button"
+            >
+              <Icon size={14} />
+              {label}
+            </button>
+          ))}
+        </nav>
         <div className="[width:min(100%,1440px)] [min-height:calc(100vh_-_64px)] [margin:0_auto] [padding:0_clamp(24px,4.2vw,64px)] max-[850px]:[padding-right:22px] max-[850px]:[padding-left:22px] max-[600px]:[padding:0_16px]">
           {error && (
             <div className="[display:flex] [align-items:center] [justify-content:space-between] [gap:14px] [margin-top:17px] [padding:12px_14px] [border:1px_solid_#efd2ca] [border-radius:5px] [background:#fff4f0] [color:#8b4033] [font-size:12px]" role="alert">
@@ -319,7 +362,11 @@ function AdminDashboard() {
                 </label>
                 <select className="[height:38px] [padding:0_11px] [border:1px_solid_#e4e9e2] [border-radius:5px] [background:#fff] [color:#647067] [font-size:10px] max-[600px]:[flex:1]"
                   aria-label="Filter link status"
-                  onChange={(event) => setStatus(event.target.value)}
+                  onChange={(event) => {
+                    const nextStatus = event.target.value;
+                    setStatus(nextStatus);
+                    void loadLinks({ search, status: nextStatus, page: 1 });
+                  }}
                   value={status}
                 >
                   <option value="">All statuses</option>
@@ -394,7 +441,11 @@ function AdminDashboard() {
                               onClick={() => void toggleLink(link)}
                               type="button"
                             >
-                              {link.status === "active" ? "Disable" : "Enable"}
+                              {busyLink === link.id
+                                ? "Updating…"
+                                : link.status === "active"
+                                  ? "Disable"
+                                  : "Enable"}
                             </button>
                           </td>
                         </tr>
@@ -468,19 +519,62 @@ function AdminDashboard() {
             />
           )}
           {section === "workspaces" && (
-            <AdminDataTable
-              eyebrow="TEAM ORGANIZATION"
-              title="All workspaces."
-              description="Workspaces and their owners across the platform."
-              columns={["WORKSPACE", "OWNER", "EMAIL", "CREATED"]}
-              rows={workspaces.map((item) => [
-                item.name,
-                item.owner?.name || "Unknown",
-                item.owner?.email || "—",
-                date(item.createdAt),
-              ])}
-              empty="No workspaces found."
-            />
+            <>
+              <form
+                className="[display:flex] [align-items:end] [gap:10px] [margin:0_0_16px] [padding:14px] [border:1px_solid_#e7eae4] [border-radius:5px] [background:#fff] max-[600px]:[flex-wrap:wrap]"
+                onSubmit={submitWorkspace}
+              >
+                <label className="[display:grid] [min-width:180px] [gap:6px] [color:#526057] [font-size:10px] [font-weight:700] [flex:1] max-[600px]:[min-width:100%]">
+                  Workspace name
+                  <input
+                    className="[height:36px] [padding:0_9px] [border:1px_solid_#e4e9e2] [border-radius:4px] [font-size:11px]"
+                    maxLength={80}
+                    minLength={2}
+                    onChange={(event) => setWorkspaceName(event.target.value)}
+                    placeholder="e.g. Marketing team"
+                    required
+                    value={workspaceName}
+                  />
+                </label>
+                <label className="[display:grid] [min-width:180px] [gap:6px] [color:#526057] [font-size:10px] [font-weight:700] [flex:1] max-[600px]:[min-width:100%]">
+                  Owner
+                  <select
+                    className="[height:36px] [padding:0_9px] [border:1px_solid_#e4e9e2] [border-radius:4px] [background:#fff] [font-size:11px]"
+                    onChange={(event) => setWorkspaceOwnerId(event.target.value)}
+                    required
+                    value={workspaceOwnerId}
+                  >
+                    <option value="">Choose an account</option>
+                    {users.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name} ({item.email})
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button
+                  className="[display:inline-flex] [min-height:36px] [align-items:center] [justify-content:center] [gap:6px] [padding:0_12px] [border:0] [border-radius:4px] [background:#60482f] [color:#fff] [cursor:pointer] [font-size:10px] [font-weight:700] [&:disabled]:[opacity:.65]"
+                  disabled={workspaceSubmitting || !users.length}
+                  type="submit"
+                >
+                  <Building2 size={14} />
+                  {workspaceSubmitting ? "Creating…" : "Create workspace"}
+                </button>
+              </form>
+              <AdminDataTable
+                eyebrow="TEAM ORGANIZATION"
+                title="All workspaces."
+                description="Workspaces and their owners across the platform."
+                columns={["WORKSPACE", "OWNER", "EMAIL", "CREATED"]}
+                rows={workspaces.map((item) => [
+                  item.name,
+                  item.owner?.name || "Unknown",
+                  item.owner?.email || "—",
+                  date(item.createdAt),
+                ])}
+                empty="No workspaces found."
+              />
+            </>
           )}
           {section === "campaigns" && (
             <AdminDataTable

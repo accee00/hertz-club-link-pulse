@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, FolderKanban, Plus } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, FolderKanban, Plus } from "lucide-react";
 import { useLinkPulse } from "../hook/useLinkPulse.js";
 
 function CampaignsPanel() {
@@ -7,6 +7,13 @@ function CampaignsPanel() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [selectedCampaignId, setSelectedCampaignId] = useState("");
+  const selectedCampaign = campaigns.find(
+    (campaign) => campaign.id === selectedCampaignId,
+  );
+  const selectedCampaignLinks = links.filter(
+    (link) => link.campaign?.id === selectedCampaignId,
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,6 +28,114 @@ function CampaignsPanel() {
       setSubmitting(false);
     }
   };
+
+  if (selectedCampaign) {
+    const clickCount = selectedCampaignLinks.reduce(
+      (sum, link) => sum + (link.totalClicks || 0),
+      0,
+    );
+
+    return (
+      <section className="[padding:9px_0_35px] max-[600px]:[padding-top:5px]">
+        <button
+          className="[display:inline-flex] [align-items:center] [gap:7px] [margin:0_0_20px] [padding:7px_10px] [border:1px_solid_#e5e9e3] [border-radius:5px] [background:#fff] [color:#526057] [cursor:pointer] [font-size:11px] [font-weight:700]"
+          onClick={() => setSelectedCampaignId("")}
+          type="button"
+        >
+          <ArrowLeft size={15} /> Back to campaigns
+        </button>
+        <div className="[margin-bottom:20px]">
+          <p className="[margin:0_0_8px] [color:var(--green)] [font-size:9px] [font-weight:700] [letter-spacing:1.8px]">
+            CAMPAIGN DETAILS
+          </p>
+          <h1 className="[margin:0] [color:#27362f] [font-size:clamp(25px,_2.5vw,_34px)] [font-weight:650] [line-height:1.2] [letter-spacing:-.6px] [font-family:'Manrope',_sans-serif]">
+            {selectedCampaign.name}
+          </h1>
+          <p className="[margin:8px_0_0] [color:#7c8780] [font-size:12px]">
+            {selectedCampaign.workspace?.name || "Your workspace"}
+          </p>
+        </div>
+        <section
+          aria-label="Campaign summary"
+          className="[display:grid] [grid-template-columns:repeat(3,_minmax(0,1fr))] [gap:12px] [margin-bottom:18px] max-[600px]:[grid-template-columns:1fr]"
+        >
+          {[
+            ["LINKS", selectedCampaignLinks.length],
+            ["TOTAL CLICKS", clickCount.toLocaleString()],
+            [
+              "ACTIVE LINKS",
+              selectedCampaignLinks.filter((link) => link.status === "active")
+                .length,
+            ],
+          ].map(([label, value]) => (
+            <article
+              className="[display:grid] [gap:8px] [padding:16px] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff]"
+              key={label}
+            >
+              <span className="[color:#96a099] [font-size:9px] [font-weight:800] [letter-spacing:1px]">
+                {label}
+              </span>
+              <strong className="[color:#273831] [font-size:23px] [font-family:'Manrope',_sans-serif]">
+                {value}
+              </strong>
+            </article>
+          ))}
+        </section>
+        <section className="[overflow:hidden] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff]">
+          <div className="[padding:15px_16px] [border-bottom:1px_solid_#edf0eb]">
+            <h2 className="[margin:0] [color:#39463e] [font-size:14px] [font-family:'Manrope',_sans-serif]">
+              Campaign links
+            </h2>
+          </div>
+          {selectedCampaignLinks.length ? (
+            <div className="[overflow-x:auto]">
+              <table className="[width:100%] [border-collapse:collapse] [text-align:left] [font-size:11px]">
+                <thead>
+                  <tr>
+                    {["SHORT LINK", "DESTINATION", "STATUS", "CLICKS"].map(
+                      (column) => (
+                        <th
+                          className="[padding:11px_14px] [border-bottom:1px_solid_#edf0eb] [background:#fbfcfa] [color:#9aa39c] [font-size:8px] [letter-spacing:.7px] [white-space:nowrap]"
+                          key={column}
+                        >
+                          {column}
+                        </th>
+                      ),
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedCampaignLinks.map((link) => (
+                    <tr key={link.id}>
+                      <td className="[padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#416d52] [font-weight:700] [white-space:nowrap]">
+                        /{link.shortCode}
+                      </td>
+                      <td
+                        className="[max-width:320px] [overflow:hidden] [padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#6e7971] [text-overflow:ellipsis] [white-space:nowrap]"
+                        title={link.destinationUrl}
+                      >
+                        {link.destinationUrl}
+                      </td>
+                      <td className="[padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#6e7971] [text-transform:capitalize]">
+                        {link.status}
+                      </td>
+                      <td className="[padding:12px_14px] [border-bottom:1px_solid_#f0f2ee] [color:#6e7971]">
+                        {(link.totalClicks || 0).toLocaleString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="[margin:0] [padding:24px_16px] [color:#89948d] [font-size:11px]">
+              No links have been added to this campaign yet.
+            </p>
+          )}
+        </section>
+      </section>
+    );
+  }
 
   return (
     <section className="[padding:9px_0_35px] max-[600px]:[padding-top:5px]">
@@ -82,9 +197,12 @@ function CampaignsPanel() {
             0,
           );
           return (
-            <article
-              className="[min-height:220px] [padding:17px] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff] max-[600px]:[min-height:205px]"
+            <button
+              aria-label={`Open campaign ${campaign.name}`}
+              className="[min-height:220px] [padding:17px] [border:1px_solid_#e7ebe4] [border-radius:6px] [background:#fff] [color:inherit] [text-align:left] [cursor:pointer] [transition:border-color_.16s,_transform_.16s] [&:hover]:[border-color:#bfd1b9] [&:hover]:[transform:translateY(-2px)] [&:focus-visible]:[outline:3px_solid_#91b83d] [&:focus-visible]:[outline-offset:3px] max-[600px]:[min-height:205px]"
               key={campaign.id}
+              onClick={() => setSelectedCampaignId(campaign.id)}
+              type="button"
             >
               <div
                 className={`[display:grid] [width:37px] [height:37px] [margin-bottom:14px] [place-items:center] [border-radius:8px] [background:#eff4e9] [color:#527c50] ${
@@ -131,7 +249,7 @@ function CampaignsPanel() {
                 </span>
                 <ArrowUpRight size={16} />
               </div>
-            </article>
+            </button>
           );
         })}
         {!campaigns.length && (

@@ -76,6 +76,20 @@ function LinkPulseProvider({ children }) {
     }
   };
 
+  const createWorkspace = async (name) => {
+    setError("");
+    try {
+      const response = await linkPulseApi.createWorkspace(token, name);
+      const workspace = response.data.workspace;
+      setWorkspaces((currentWorkspaces) => [workspace, ...currentWorkspaces]);
+      setWorkspaceId(workspace.id);
+      return workspace;
+    } catch (requestError) {
+      setError(requestError.message);
+      throw requestError;
+    }
+  };
+
   const createCampaign = async (name) => {
     setError("");
     try {
@@ -139,6 +153,7 @@ function LinkPulseProvider({ children }) {
         error,
         setError,
         refresh,
+        createWorkspace,
         createLink,
         importLinks,
         createCampaign,

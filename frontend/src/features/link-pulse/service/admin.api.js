@@ -25,6 +25,11 @@ const adminApi = {
   analytics: (token) => request("/admin/analytics", token),
   users: (token) => request("/admin/users", token),
   workspaces: (token) => request("/admin/workspaces", token),
+  createWorkspace: (token, details) =>
+    request("/admin/workspaces", token, {
+      method: "POST",
+      body: JSON.stringify(details),
+    }),
   campaigns: (token) => request("/admin/campaigns", token),
   links: (token, { page = 1, limit = 25, search = "", status = "" } = {}) => {
     const params = new URLSearchParams({

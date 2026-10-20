@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  createWorkspaceForUser,
   createBlockedDomain,
   deleteBlockedDomain,
   getPlatformAnalytics,
@@ -13,13 +14,17 @@ import {
 import { authenticate, authorizeRoles } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validation_middleware.js';
 import { createBlockedDomainSchema } from '../zod-schema/blocked_domain_schemas.js';
+import { createAdminWorkspaceSchema } from '../zod-schema/workspace_schemas.js';
 
 const adminRouter = Router();
 
 adminRouter.use(authenticate, authorizeRoles('admin'));
 
 adminRouter.get('/users', listUsers);
-adminRouter.get('/workspaces', listAllWorkspaces);
+adminRouter
+  .route('/workspaces')
+  .post(validateBody(createAdminWorkspaceSchema), createWorkspaceForUser)
+  .get(listAllWorkspaces);
 adminRouter.get('/campaigns', listAllCampaigns);
 
 adminRouter.get('/links', listAllLinks);

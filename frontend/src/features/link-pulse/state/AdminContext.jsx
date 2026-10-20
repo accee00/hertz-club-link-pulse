@@ -39,7 +39,7 @@ function AdminProvider({ children }) {
     [token],
   );
 
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(async (linkFilters = {}) => {
     setLoading(true);
     setError("");
     const results = await Promise.allSettled([
@@ -48,7 +48,7 @@ function AdminProvider({ children }) {
       adminApi.workspaces(token),
       adminApi.campaigns(token),
       adminApi.blockedDomains(token),
-      adminApi.links(token),
+      adminApi.links(token, linkFilters),
     ]);
     const failed = results.find((result) => result.status === "rejected");
     if (failed) setError(failed.reason.message);
@@ -75,11 +75,42 @@ function AdminProvider({ children }) {
     void refresh();
   }, [refresh]);
 
-  const updateLinkStatus = async (id, status) => {
+  const updateLinkStatus = async (id, status, linkFilters = {}) => {
     setError("");
     try {
-      await adminApi.updateLinkStatus(token, id, status);
-      await Promise.all([refresh(), loadLinks({ page: pagination.page })]);
+      const response = await adminApi.updateLinkStatus(token, id, status);
+      const updatedLink = response.data;
+      const previousLink = links.find((link) => link.id === id);
+      setLinks((currentLinks) =>
+        currentLinks.map((link) =>
+          link.id === id ? { ...link, status: updatedLink.status } : link,
+        ),
+      );
+
+      if (previousLink && previousLink.status !== updatedLink.status) {
+        const activeDelta = updatedLink.status === "active" ? 1 : -1;
+        setOverview(
+          (current) =>
+            current && {
+              ...current,
+              activeLinks: current.activeLinks + activeDelta,
+              disabledLinks: current.disabledLinks - activeDelta,
+            },
+        );
+      }
+
+      void loadLinks(linkFilters);
+    } catch (requestError) {
+      setError(requestError.message);
+      throw requestError;
+    }
+  };
+
+  const createWorkspace = async (details) => {
+    setError("");
+    try {
+      await adminApi.createWorkspace(token, details);
+      await refresh();
     } catch (requestError) {
       setError(requestError.message);
       throw requestError;
@@ -142,6 +173,7 @@ function AdminProvider({ children }) {
         refresh,
         loadLinks,
         updateLinkStatus,
+        createWorkspace,
         addBlockedDomain,
         removeBlockedDomain,
       }}
