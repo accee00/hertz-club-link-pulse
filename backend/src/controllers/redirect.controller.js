@@ -133,39 +133,22 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         font-family: "DM Sans", Arial, sans-serif;
       }
       main {
-        width: min(100%, 440px);
-        padding: 36px;
+        width: min(100%, 400px);
+        padding: 30px;
         border: 1px solid #e5e5e5;
         background: #fff;
         box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
       }
-      .brand {
-        color: #a8a151;
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 1.4px;
-        text-align: center;
-      }
-      .icon {
-        display: grid;
-        width: 52px;
-        height: 52px;
-        margin: 27px auto 18px;
-        place-items: center;
-        background: #f0efea;
-        color: #a8a151;
-        font-size: 22px;
-      }
       h1 {
         margin: 0;
         font-family: Manrope, Arial, sans-serif;
-        font-size: 24px;
+        font-size: 26px;
         text-align: center;
       }
       .description {
-        margin: 10px 0 24px;
+        margin: 10px 0 26px;
         color: #737373;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.6;
         text-align: center;
       }
@@ -173,7 +156,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         display: block;
         margin-bottom: 8px;
         color: #3c3c3e;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
       }
       input {
@@ -187,8 +170,9 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         font-size: 14px;
       }
       input:focus {
-        border-color: #a8a151;
-        outline: 2px solid rgba(168, 161, 81, .12);
+        border-color: #e5e5e5;
+        outline: none;
+        box-shadow: none;
       }
       button {
         width: 100%;
@@ -199,7 +183,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         color: #fff;
         cursor: pointer;
         font: inherit;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 700;
       }
       button:hover:not(:disabled) { background: #3a3a3a; }
@@ -210,7 +194,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         border: 1px solid #e5e5e5;
         background: #f5f5f5;
         color: #8b4a47;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.5;
       }
       .error[hidden] { display: none; }
@@ -221,12 +205,10 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
   </head>
   <body>
     <main>
-      <div class="brand">LINK PULSE</div>
-      <div class="icon" aria-hidden="true">🔒</div>
-      <h1>Password protected</h1>
-      <p class="description">Enter the password provided by the person who shared this link to continue.</p>
+      <h1>Enter password</h1>
+      <p class="description">This link is password protected.</p>
       <form id="password-form">
-        <label for="password">Link password</label>
+        <label for="password">Password</label>
         <input
           id="password"
           name="password"
@@ -236,7 +218,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
           required
           autofocus
         />
-        <button id="unlock-button" type="submit">Unlock link</button>
+        <button id="unlock-button" type="submit">Continue</button>
         <p class="error" id="error-message" role="alert" aria-live="polite" hidden></p>
       </form>
     </main>
@@ -250,7 +232,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
         event.preventDefault();
         errorMessage.hidden = true;
         unlockButton.disabled = true;
-        unlockButton.textContent = 'Checking password…';
+        unlockButton.textContent = 'Checking…';
 
         try {
           const response = await fetch('/r/${encodeURIComponent(shortCode)}/verify-password', {
@@ -274,7 +256,7 @@ const renderPasswordPromptHtml = (shortCode) => `<!doctype html>
           errorMessage.hidden = false;
         } finally {
           unlockButton.disabled = false;
-          unlockButton.textContent = 'Unlock link';
+          unlockButton.textContent = 'Continue';
         }
       });
     </script>
