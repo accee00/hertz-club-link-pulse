@@ -27,7 +27,7 @@ const features = [
 
 function LandingPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-paper text-ink">
+    <main className="min-h-screen overflow-x-hidden bg-paper text-ink">
       <header className="mx-auto flex w-[calc(100%_-_48px)] items-center justify-between py-5 sm:w-[calc(100%_-_64px)] sm:py-7">
         <Link
           aria-label="LinkPulse home"
