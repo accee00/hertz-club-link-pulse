@@ -52,10 +52,6 @@ input {
   font: inherit;
 }
 
-a {
-  color: inherit;
-}
-
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
