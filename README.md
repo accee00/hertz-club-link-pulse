@@ -553,7 +553,7 @@ LinkPulse is live and deployed for production:
 
 | Name 
 | :--- |
-| **Harshvardhan Singh**
+| **Harshvardhan**
 | **Rahul Raj Singh** 
 | **Abhay Singh** 
 | **Lakshya Agarwal**
