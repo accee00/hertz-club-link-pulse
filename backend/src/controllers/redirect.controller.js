@@ -6,7 +6,6 @@ import { asyncHandler } from '../utils/async_handler.js';
 import { logClickAsync } from '../utils/click_logger.js';
 import { sendResponse } from '../utils/send_reponse.js';
 import { isDomainBlocked } from '../utils/domain_helper.js';
-import config from '../config/config.js';
 
 const escapeHtml = (value) =>
   value.replace(
@@ -75,20 +74,6 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
         font-size: 14px;
         line-height: 1.6;
       }
-      .home-link {
-        display: inline-grid;
-        min-height: 42px;
-        margin-top: 8px;
-        padding: 0 17px;
-        place-items: center;
-        border: 1px solid #e5e5e5;
-        background: #fff;
-        color: #131212;
-        font-size: 13px;
-        font-weight: 700;
-        text-decoration: none;
-      }
-      .home-link:hover { background: #f5f5f5; }
     </style>
   </head>
   <body>
@@ -97,7 +82,6 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
       <div class="icon" aria-hidden="true">!</div>
       <h1>This link is unavailable</h1>
       <p>${escapeHtml(message)}</p>
-      <a class="home-link" href="${escapeHtml(new URL('/dashboard', config.FRONTEND_URL).toString())}">Return to your dashboard</a>
     </main>
   </body>
 </html>`;
