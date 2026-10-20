@@ -89,6 +89,20 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
         font-weight: 700;
       }
       button:hover { background: #183f35; }
+      a {
+        display: inline-grid;
+        min-height: 42px;
+        margin-top: 8px;
+        padding: 0 17px;
+        place-items: center;
+        border: 1px solid #dfe7df;
+        border-radius: 6px;
+        background: #fff;
+        color: #245e4e;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
@@ -97,8 +111,18 @@ const renderRedirectErrorHtml = (message) => `<!doctype html>
       <div class="icon" aria-hidden="true">!</div>
       <h1>This link is unavailable</h1>
       <p>${escapeHtml(message)}</p>
-      <button type="button" onclick="history.back()">Go back</button>
+      <button id="go-back" type="button">Go back</button>
+      <a href="/">Link Pulse home</a>
     </main>
+    <script>
+      document.getElementById('go-back').addEventListener('click', () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.assign('/');
+        }
+      });
+    </script>
   </body>
 </html>`;
 
