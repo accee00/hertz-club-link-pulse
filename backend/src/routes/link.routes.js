@@ -11,6 +11,10 @@ import {
   updateLink,
 } from '../controllers/link.controller.js';
 import { authenticate } from '../middleware/auth.middleware.js';
+import {
+  linkCreationLimiter,
+  linkImportLimiter,
+} from '../middleware/rate_limit.middleware.js';
 import { validateBody } from '../middleware/validation_middleware.js';
 import {
   createLinkSchema,
@@ -23,13 +27,14 @@ linkRouter.use(authenticate);
 
 linkRouter.post(
   '/import',
+  linkImportLimiter,
   express.text({ type: 'text/csv', limit: '2mb' }),
   importLinks
 );
 
 linkRouter
   .route('/')
-  .post(validateBody(createLinkSchema), createLink)
+  .post(linkCreationLimiter, validateBody(createLinkSchema), createLink)
   .get(listLinks);
 
 linkRouter.route('/:id/qr').get(getLinkQrCode);
