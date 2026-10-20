@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Copy,
@@ -25,7 +25,9 @@ function LinksPanel({ onCreateLink }) {
   const [filter, setFilter] = useState("all");
   const [qrCode, setQrCode] = useState(null);
   const [busyId, setBusyId] = useState("");
+  const [copiedLinkId, setCopiedLinkId] = useState("");
   const [importOpen, setImportOpen] = useState(false);
+  const copiedTimer = useRef(null);
   const filteredLinks = useMemo(
     () =>
       links.filter((link) => {
@@ -42,12 +44,21 @@ function LinksPanel({ onCreateLink }) {
     try {
       await navigator.clipboard.writeText(link.shortUrl);
       setError("");
+      setCopiedLinkId(link.id);
+      window.clearTimeout(copiedTimer.current);
+      copiedTimer.current = window.setTimeout(() => setCopiedLinkId(""), 2000);
     } catch {
+      setCopiedLinkId("");
       setError(
         "Could not copy this link. Check clipboard permissions and try again.",
       );
     }
   };
+
+  useEffect(
+    () => () => window.clearTimeout(copiedTimer.current),
+    [],
+  );
 
   const toggleLink = async (link) => {
     setBusyId(link.id);
@@ -125,6 +136,14 @@ function LinksPanel({ onCreateLink }) {
           ))}
         </div>
       </div>
+      {copiedLinkId && (
+        <p
+          className="[margin:0_0_10px] [color:#2e7d32] [font-size:13px]"
+          role="status"
+        >
+          Link copied to clipboard.
+        </p>
+      )}
       <div className="[overflow:hidden] [border:1px_solid_#e6eae4] [border-radius:6px] [background:#fff] max-[600px]:[margin-right:-1px] max-[600px]:[margin-left:-1px]">
         <div className="[display:grid] [grid-template-columns:minmax(190px,_2fr)_minmax(140px,_1.3fr)_minmax(80px,_.65fr)_minmax(85px,_.7fr)_minmax(110px,_.8fr)] [align-items:center] [gap:14px] [padding:0_20px] [min-height:40px] [border-bottom:1px_solid_#edf0eb] [background:#fbfcfa] [color:#99a39c] [font-size:8px] [font-weight:800] [letter-spacing:.95px] max-[1100px]:[grid-template-columns:minmax(150px,_1.7fr)_minmax(110px,_1fr)_70px_76px_100px] max-[1100px]:[gap:9px] max-[1100px]:[padding-right:13px] max-[1100px]:[padding-left:13px] max-[850px]:[display:none]">
           <span>SHORT LINK</span>
