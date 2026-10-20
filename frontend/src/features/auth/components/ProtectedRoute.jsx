@@ -6,7 +6,7 @@ function ProtectedRoute({ children, role }) {
   const location = useLocation();
 
   if (loading) {
-    return <main className="loading-screen">Loading your account...</main>;
+    return <main className="[display:grid] [min-height:100vh] [place-items:center] [color:var(--muted)]">Loading your account...</main>;
   }
 
   if (!user) {

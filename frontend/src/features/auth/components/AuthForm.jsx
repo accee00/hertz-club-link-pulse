@@ -45,15 +45,15 @@ function AuthForm({ mode }) {
   return (
     <>
       {error && (
-        <div className="form-error" role="alert">
+        <div className="[margin-bottom:18px] [padding:12px_14px] [border-left:3px_solid_var(--red)] [background:#f9e9e5] [color:#812f25] [font-size:13px]" role="alert">
           {error}
         </div>
       )}
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <form className="[display:grid] [gap:19px]" onSubmit={handleSubmit}>
         {isRegister && (
-          <label className="field">
+          <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
             <span>Your name</span>
-            <input
+            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none]"
               autoComplete="name"
               maxLength={80}
               minLength={2}
@@ -63,9 +63,9 @@ function AuthForm({ mode }) {
             />
           </label>
         )}
-        <label className="field">
+        <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
           <span>Email address</span>
-          <input
+          <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none]"
             autoComplete="email"
             name="email"
             placeholder="you@example.com"
@@ -73,10 +73,10 @@ function AuthForm({ mode }) {
             type="email"
           />
         </label>
-        <label className="field">
+        <label className="[display:grid] [gap:8px] [color:#35413d] [font-size:12px] [font-weight:700]">
           <span>Password</span>
-          <span className="password-wrap">
-            <input
+          <span className="[position:relative]">
+            <input className="[width:100%] [height:51px] [padding:0_15px] [border:1px_solid_#dce2dc] [border-radius:4px] [background:#fff] [color:var(--ink)] [font-size:14px] [transition:border-color_.18s,_box-shadow_.18s] [&::placeholder]:[color:#a0a9a4] [&:focus]:[border-color:var(--green)] [&:focus]:[box-shadow:0_0_0_3px_rgba(35,91,78,.1)] [&:focus]:[outline:none] [padding-right:50px]"
               autoComplete={isRegister ? 'new-password' : 'current-password'}
               minLength={isRegister ? 8 : undefined}
               name="password"
@@ -86,7 +86,7 @@ function AuthForm({ mode }) {
             />
             <button
               aria-label={showPassword ? 'Hide password' : 'Show password'}
-              className="icon-button password-toggle"
+              className="[display:inline-grid] [width:38px] [height:38px] [place-items:center] [border:0] [border-radius:50%] [background:transparent] [color:#687570] [cursor:pointer] [&:hover]:[background:#edf0eb] [&:hover]:[color:var(--green-dark)] [position:absolute] [top:6px] [right:6px]"
               onClick={() => setShowPassword((visible) => !visible)}
               type="button"
             >
@@ -95,19 +95,19 @@ function AuthForm({ mode }) {
           </span>
         </label>
         {!isRegister && (
-          <div className="form-options">
-            <label className="remember-option">
-              <input type="checkbox" />
+          <div className="[display:flex] [align-items:center] [justify-content:space-between] [gap:12px] [margin-top:-3px] [font-size:12px]">
+            <label className="[display:inline-flex] [align-items:center] [gap:8px] [color:#58635e]">
+              <input className="[width:15px] [height:15px] [accent-color:var(--green)]" type="checkbox" />
               <span>Keep me signed in</span>
             </label>
-            <a className="text-link" href="#help">
+            <a className="[color:var(--green)] [font-weight:700] [text-decoration:none] [&:hover]:[text-decoration:underline]" href="#help">
               Need help?
             </a>
           </div>
         )}
-        <button className="submit-button" disabled={submitting} type="submit">
+        <button className="[display:flex] [min-height:52px] [align-items:center] [justify-content:space-between] [margin-top:5px] [padding:0_17px_0_19px] [border:0] [border-radius:4px] [background:var(--green)] [color:white] [font-weight:700] [cursor:pointer] [transition:background_.18s,_transform_.18s] [&:hover:not(:disabled)]:[transform:translateY(-1px)] [&:hover:not(:disabled)]:[background:var(--green-dark)] [&:disabled]:[opacity:.72] [&:disabled]:[cursor:wait]" disabled={submitting} type="submit">
           {submitting ? (
-            <LoaderCircle className="spin" size={18} />
+            <LoaderCircle className="[animation:spin_.8s_linear_infinite]" size={18} />
           ) : (
             <>
               {isRegister ? 'Create account' : 'Sign in'}
@@ -116,7 +116,7 @@ function AuthForm({ mode }) {
           )}
         </button>
       </form>
-      <p className="switch-auth">
+      <p className="[margin:22px_0_0] [color:#66716c] [text-align:center] [font-size:13px]">
         {isRegister ? 'Already have an account?' : 'New to Link Pulse?'}{' '}
         <Link to={isRegister ? '/login' : '/register'}>
           {isRegister ? 'Sign in' : 'Create an account'}

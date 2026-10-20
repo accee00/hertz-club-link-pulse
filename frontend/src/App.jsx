@@ -1,8 +1,9 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { ProtectedRoute } from './features/auth/components/ProtectedRoute.jsx';
-import { DashboardPage } from './features/auth/pages/DashboardPage.jsx';
-import { LoginPage } from './features/auth/pages/LoginPage.jsx';
-import { RegisterPage } from './features/auth/pages/RegisterPage.jsx';
+import { Navigate, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./features/auth/components/ProtectedRoute.jsx";
+import { LandingPage } from "./features/auth/pages/LandingPage.jsx";
+import { LoginPage } from "./features/auth/pages/LoginPage.jsx";
+import { RegisterPage } from "./features/auth/pages/RegisterPage.jsx";
+import { DashboardPage } from "./features/link-pulse/pages/DashboardPage.jsx";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );
