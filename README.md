@@ -295,6 +295,19 @@ LinkPulse/
 
 ## Getting Started
 
+---
+## Admin Demo Credentials
+
+Use the following credentials to access the LinkPulse Admin Dashboard.
+
+| Field | Details |
+| :--- | :--- |
+| **Admin Dashboard** | [Open LinkPulse](https://hertz-club-link-pulse.vercel.app/) |
+| **Email** | `admin@admin.com` |
+| **Password** | `12345678` |
+
+> **Note:** Log in using the credentials above to access the Admin Console.
+
 ### Prerequisites
 
 - **Node.js ≥ 20.0.0** and **npm**
